@@ -1,0 +1,2805 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Kook.Net.Rest</name>
+    </assembly>
+    <members>
+        <member name="P:Kook.API.IModule.Type">
+            <summary>
+                模块类型
+            </summary>
+        </member>
+        <member name="M:Kook.Net.Rest.DefaultRestClient.SendAsync(System.Net.Http.HttpMethod,System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object},System.Threading.CancellationToken,System.String,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.IEnumerable{System.String}}})">
+            <exception cref="T:System.InvalidOperationException">Unsupported param type.</exception>
+        </member>
+        <member name="T:Kook.Net.Rest.DefaultRestClientProvider">
+            <summary>
+                Represents a default <see cref="T:Kook.Net.Rest.RestClientProvider"/> that creates <see cref="T:Kook.Net.Rest.DefaultRestClient"/> instances.
+            </summary>
+        </member>
+        <member name="F:Kook.Net.Rest.DefaultRestClientProvider.Instance">
+            <summary>
+                Gets a <see cref="T:Kook.Net.Rest.RestClientProvider"/> delegate that creates <see cref="T:Kook.Net.Rest.IRestClient"/> instances.
+            </summary>
+        </member>
+        <member name="M:Kook.Net.Rest.DefaultRestClientProvider.Create(System.Boolean)">
+            <summary>
+                Creates a delegate that creates a new <see cref="T:Kook.Net.Rest.DefaultRestClient"/> instance.
+            </summary>
+            <param name="useProxy"> Whether to use the system proxy. </param>
+            <returns> A delegate that creates a new <see cref="T:Kook.Net.Rest.DefaultRestClient"/> instance. </returns>
+        </member>
+        <member name="M:Kook.Net.Converters.NullableGradientColorConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Net.Converters.NullableGradientColorConverter.Write(System.Text.Json.Utf8JsonWriter,System.Nullable{Kook.GradientColor},System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Net.Converters.QuoteConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Net.Converters.QuoteConverter.Write(System.Text.Json.Utf8JsonWriter,Kook.API.Quote,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Net.RateLimitInfo">
+            <summary>
+                Represents a REST-Based ratelimit info.
+            </summary>
+        </member>
+        <member name="P:Kook.Net.RateLimitInfo.IsGlobal">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Net.RateLimitInfo.Limit">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Net.RateLimitInfo.Remaining">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Net.RateLimitInfo.ResetAfter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Net.RateLimitInfo.Bucket">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Net.RateLimitInfo.Lag">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Net.RateLimitInfo.Endpoint">
+            <inheritdoc/>
+        </member>
+        <member name="T:Kook.Rest.BaseKookClient">
+            <summary>
+                Represents a client that can connect to the Kook API.
+            </summary>
+        </member>
+        <member name="E:Kook.Rest.BaseKookClient.Log">
+            <summary>
+                Fired when a log message is sent.
+            </summary>
+        </member>
+        <member name="E:Kook.Rest.BaseKookClient.LoggedIn">
+            <summary>
+                Fired when the client has logged in.
+            </summary>
+        </member>
+        <member name="E:Kook.Rest.BaseKookClient.LoggedOut">
+            <summary>
+                Fired when the client has logged out.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.BaseKookClient.LoginState">
+            <summary>
+                Gets the login state of the client.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.BaseKookClient.CurrentUser">
+            <summary>
+                Gets the logged-in user.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.BaseKookClient.TokenType">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.LoginAsync(Kook.TokenType,System.String,System.Boolean)">
+            <summary>
+                Logs in to the Kook API.
+            </summary>
+            <param name="tokenType"> The type of token to use. </param>
+            <param name="token"> The token to use. </param>
+            <param name="validateToken"> Whether to validate the token before logging in. </param>
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.LogoutAsync">
+            <summary>
+                Logs out from the Kook API.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.BaseKookClient.Kook#IKookClient#ConnectionState">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.BaseKookClient.Kook#IKookClient#CurrentUser">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.Kook#IKookClient#GetGuildAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.Kook#IKookClient#GetGuildsAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.Kook#IKookClient#GetChannelAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.Kook#IKookClient#GetDMChannelAsync(System.Guid,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.Kook#IKookClient#GetDMChannelsAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.Kook#IKookClient#GetUserAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.Kook#IKookClient#GetUserAsync(System.String,System.String,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.Kook#IKookClient#GetFriendsAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.Kook#IKookClient#GetFriendRequestsAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.Kook#IKookClient#GetBlockedUsersAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.Kook#IKookClient#StartAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.BaseKookClient.Kook#IKookClient#StopAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.ChannelHelper.CreateInviteAsync(Kook.IGuildChannel,Kook.Rest.BaseKookClient,System.Nullable{System.Int32},System.Nullable{System.Int32},Kook.RequestOptions)">
+            <exception cref="T:System.ArgumentException">
+            <paramref name="channel.Id.Id"/> may not be equal to zero.
+            <paramref name="maxAge"/> and <paramref name="maxUses"/> must be greater than zero.
+            <paramref name="maxAge"/> must be lesser than 604800.
+            </exception>
+        </member>
+        <member name="M:Kook.Rest.ChannelHelper.SyncPermissionsAsync(Kook.INestedChannel,Kook.Rest.BaseKookClient,Kook.RequestOptions)">
+            <exception cref="T:System.InvalidOperationException">This channel does not have a parent channel.</exception>
+        </member>
+        <member name="M:Kook.Rest.ChannelHelper.GetUserAsync(Kook.IGuildChannel,Kook.IGuild,Kook.Rest.BaseKookClient,System.UInt64,Kook.RequestOptions)">
+            <exception cref="T:System.InvalidOperationException">Resolving permissions requires the parent guild to be downloaded.</exception>
+        </member>
+        <member name="M:Kook.Rest.ChannelHelper.GetUsersAsync(Kook.IGuildChannel,Kook.IGuild,Kook.Rest.BaseKookClient,System.Int32,System.Int32,Kook.RequestOptions)">
+            <exception cref="T:System.InvalidOperationException">Resolving permissions requires the parent guild to be downloaded.</exception>
+        </member>
+        <member name="T:Kook.Rest.IRestAudioChannel">
+            <summary>
+                Represents a generic REST-based audio channel.
+            </summary>
+        </member>
+        <member name="T:Kook.Rest.IRestMessageChannel">
+            <summary>
+                Represents a REST-based channel that can send and receive messages.
+            </summary>
+        </member>
+        <member name="M:Kook.Rest.IRestMessageChannel.GetMessageAsync(System.Guid,Kook.RequestOptions)">
+            <summary>
+                Gets a message from this message channel.
+            </summary>
+            <remarks>
+                This method follows the same behavior as described in <see cref="M:Kook.IMessageChannel.GetMessageAsync(System.Guid,Kook.CacheMode,Kook.RequestOptions)"/>.
+                Please visit its documentation for more details on this method.
+            </remarks>
+            <param name="id">The identifier of the message.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents an asynchronous get operation for retrieving the message. The task result contains
+                the retrieved message; <c>null</c> if no message is found with the specified identifier.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.IRestMessageChannel.GetMessagesAsync(System.Int32,Kook.RequestOptions)">
+            <summary>
+                Gets the last N messages from this message channel.
+            </summary>
+            <remarks>
+                This method follows the same behavior as described in <see cref="M:Kook.IMessageChannel.GetMessagesAsync(System.Int32,Kook.CacheMode,Kook.RequestOptions)"/>.
+                Please visit its documentation for more details on this method.
+            </remarks>
+            <param name="limit">The numbers of message to be gotten from.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                Paged collection of messages.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.IRestMessageChannel.GetMessagesAsync(System.Guid,Kook.Direction,System.Int32,Kook.RequestOptions)">
+            <summary>
+                Gets a collection of messages in this channel.
+            </summary>
+            <remarks>
+                This method follows the same behavior as described in <see cref="M:Kook.IMessageChannel.GetMessagesAsync(System.Guid,Kook.Direction,System.Int32,Kook.CacheMode,Kook.RequestOptions)"/>.
+                Please visit its documentation for more details on this method.
+            </remarks>
+            <param name="referenceMessageId">The ID of the starting message to get the messages from.</param>
+            <param name="dir">The direction of the messages to be gotten from.</param>
+            <param name="limit">The numbers of message to be gotten from.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                Paged collection of messages.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.IRestMessageChannel.GetMessagesAsync(Kook.IMessage,Kook.Direction,System.Int32,Kook.RequestOptions)">
+            <summary>
+                Gets a collection of messages in this channel.
+            </summary>
+            <remarks>
+                This method follows the same behavior as described in <see cref="M:Kook.IMessageChannel.GetMessagesAsync(Kook.IMessage,Kook.Direction,System.Int32,Kook.CacheMode,Kook.RequestOptions)"/>.
+                Please visit its documentation for more details on this method.
+            </remarks>
+            <param name="referenceMessage">The starting message to get the messages from.</param>
+            <param name="dir">The direction of the messages to be gotten from.</param>
+            <param name="limit">The numbers of message to be gotten from.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                Paged collection of messages.
+            </returns>
+        </member>
+        <member name="T:Kook.Rest.IRestPrivateChannel">
+            <summary>
+                Represents a REST-based channel that is private to select recipients.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.IRestPrivateChannel.Recipients">
+            <summary>
+                Users that can access this channel.
+            </summary>
+        </member>
+        <member name="T:Kook.Rest.RestCategoryChannel">
+            <summary>
+                Represents a REST-based category channel.
+            </summary>
+        </member>
+        <member name="M:Kook.Rest.RestCategoryChannel.Kook#IChannel#GetUsersAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+            <exception cref="T:System.NotSupportedException">This method is not supported with category channels.</exception>
+        </member>
+        <member name="M:Kook.Rest.RestCategoryChannel.Kook#IChannel#GetUserAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+            <exception cref="T:System.NotSupportedException">This method is not supported with category channels.</exception>
+        </member>
+        <member name="T:Kook.Rest.RestChannel">
+            <summary>
+                Represents a generic REST-based channel.
+            </summary>
+        </member>
+        <member name="M:Kook.Rest.RestChannel.UpdateAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestChannel.Kook#IChannel#Name">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestChannel.Kook#IChannel#GetUserAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestChannel.Kook#IChannel#GetUsersAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestDMChannel">
+            <summary>
+                Represents a REST-based direct-message channel.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestDMChannel.Id">
+            <summary>
+                Get the identifier of the DM channel.
+            </summary>
+            <remarks>
+                This property is the same as <see cref="P:Kook.Rest.RestDMChannel.ChatCode" />.
+            </remarks>
+        </member>
+        <member name="P:Kook.Rest.RestDMChannel.ChatCode">
+            <inheritdoc />
+            <remarks>
+                This property is the same as <see cref="P:Kook.Rest.RestDMChannel.Id" />.
+            </remarks>
+        </member>
+        <member name="P:Kook.Rest.RestDMChannel.CurrentUser">
+            <summary>
+                Gets the current logged-in user.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestDMChannel.Recipient">
+            <summary>
+                Gets the recipient of the channel.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestDMChannel.Users">
+            <summary>
+                Gets a collection that is the current logged-in user and the recipient.
+            </summary>
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.UpdateAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.CloseAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.GetUser(System.UInt64)">
+            <summary>
+                Gets a user in this channel from the provided <paramref name="id"/>.
+            </summary>
+            <param name="id">The identifier of the user.</param>
+            <returns>
+                A <see cref="T:Kook.Rest.RestUser"/> object that is a recipient of this channel; otherwise <c>null</c>.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.SendTextAsync(System.String,Kook.IQuote,Kook.RequestOptions)">
+            <summary>
+                Sends a text message to this message channel.
+            </summary>
+            <param name="text">The message to be sent.</param>
+            <param name="quote">The message quote to be included. Used to reply to specific messages.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents an asynchronous send operation for delivering the message. The task result
+                contains the identifier and timestamp of the sent message.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.SendFileAsync(System.String,System.String,Kook.AttachmentType,Kook.IQuote,Kook.RequestOptions)">
+            <summary>
+                Sends a file to this message channel.
+            </summary>
+            <remarks>
+                This method sends a file as if you are uploading a file directly from your Kook client.
+            </remarks>
+            <param name="path">The file path of the file.</param>
+            <param name="fileName">The name of the file.</param>
+            <param name="type">The type of the file.</param>
+            <param name="quote">The message quote to be included. Used to reply to specific messages.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents an asynchronous send operation for delivering the message. The task result
+                contains the identifier and timestamp of the sent message.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.SendFileAsync(System.IO.Stream,System.String,Kook.AttachmentType,Kook.IQuote,Kook.RequestOptions)">
+            <summary>
+                Sends a file to this message channel.
+            </summary>
+            <remarks>
+                This method sends a file as if you are uploading a file directly from your Kook client.
+            </remarks>
+            <param name="stream">The stream of the file.</param>
+            <param name="fileName">The name of the file.</param>
+            <param name="type">The type of the file.</param>
+            <param name="quote">The message quote to be included. Used to reply to specific messages.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents an asynchronous send operation for delivering the message. The task result
+                contains the identifier and timestamp of the sent message.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.SendFileAsync(Kook.FileAttachment,Kook.IQuote,Kook.RequestOptions)">
+            <summary>
+                Sends a file to this message channel.
+            </summary>
+            <remarks>
+                This method sends a file as if you are uploading a file directly from your Kook client.
+            </remarks>
+            <param name="attachment">The attachment containing the file.</param>
+            <param name="quote">The message quote to be included. Used to reply to specific messages.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents an asynchronous send operation for delivering the message. The task result
+                contains the identifier and timestamp of the sent message.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.SendCardsAsync(System.Collections.Generic.IEnumerable{Kook.ICard},Kook.IQuote,Kook.RequestOptions)">
+            <summary>
+                Sends a card message to this message channel.
+            </summary>
+            <param name="cards">The cards to be sent.</param>
+            <param name="quote">The message quote to be included. Used to reply to specific messages.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents an asynchronous send operation for delivering the message. The task result
+                contains the identifier and timestamp of the sent message.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.SendCardAsync(Kook.ICard,Kook.IQuote,Kook.RequestOptions)">
+            <summary>
+                Sends a card message to this message channel.
+            </summary>
+            <param name="card">The card to be sent.</param>
+            <param name="quote">The message quote to be included. Used to reply to specific messages.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents an asynchronous send operation for delivering the message. The task result
+                contains the identifier and timestamp of the sent message.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.GetMessageAsync(System.Guid,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.GetMessagesAsync(System.Int32,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.GetMessagesAsync(System.Guid,Kook.Direction,System.Int32,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.GetMessagesAsync(Kook.IMessage,Kook.Direction,System.Int32,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.DeleteMessageAsync(System.Guid,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.DeleteMessageAsync(Kook.IMessage,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.ModifyMessageAsync(System.Guid,System.Action{Kook.MessageProperties},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestDMChannel.Kook#IDMChannel#Recipient">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestDMChannel.Kook#Rest#IRestPrivateChannel#Recipients">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestDMChannel.Kook#IPrivateChannel#Recipients">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.Kook#IMessageChannel#GetMessageAsync(System.Guid,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.Kook#IMessageChannel#GetMessagesAsync(System.Int32,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.Kook#IMessageChannel#GetMessagesAsync(System.Guid,Kook.Direction,System.Int32,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.Kook#IMessageChannel#GetMessagesAsync(Kook.IMessage,Kook.Direction,System.Int32,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.Kook#IMessageChannel#SendFileAsync(System.String,System.String,Kook.AttachmentType,Kook.IQuote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.Kook#IMessageChannel#SendFileAsync(System.IO.Stream,System.String,Kook.AttachmentType,Kook.IQuote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.Kook#IMessageChannel#SendFileAsync(Kook.FileAttachment,Kook.IQuote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.Kook#IMessageChannel#SendTextAsync(System.String,Kook.IQuote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.Kook#IMessageChannel#SendCardsAsync(System.Collections.Generic.IEnumerable{Kook.ICard},Kook.IQuote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.Kook#IMessageChannel#SendCardAsync(Kook.ICard,Kook.IQuote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.ToString">
+            <summary>
+                Gets a string that represents the Username#IdentifyNumber of the recipient.
+            </summary>
+            <returns>
+                A string that resolves to the Recipient of this channel.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.Kook#IChannel#GetUserAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestDMChannel.Kook#IChannel#GetUsersAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestGuildChannel">
+            <summary>
+                Represents a REST-based guild channel in a guild.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestGuildChannel.RolePermissionOverwrites">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildChannel.UserPermissionOverwrites">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildChannel.Guild">
+            <summary>
+                Gets the guild associated with this channel.
+            </summary>
+            <returns>
+                A guild object that this channel belongs to.
+            </returns>
+        </member>
+        <member name="P:Kook.Rest.RestGuildChannel.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildChannel.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildChannel.Position">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildChannel.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildChannel.CreatorId">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.ModifyAsync(System.Action{Kook.ModifyGuildChannelProperties},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.GetCreatorAsync(Kook.RequestOptions)">
+            <summary>
+                Gets the creator of this channel.
+            </summary>
+            <remarks>
+                This method will try to get the user as a global user. To get the creator as a guild member,
+                you will need to get the user through
+                <see cref="M:Kook.IGuild.GetUserAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)"/>."/>
+            </remarks>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the creator of this channel.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.DeleteAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.UpdateAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.GetPermissionOverwrite(Kook.IUser)">
+            <summary>
+                Gets the permission overwrite for a specific user.
+            </summary>
+            <param name="user">The user to get the overwrite from.</param>
+            <returns>
+                An overwrite object for the targeted user; <c>null</c> if none is set.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.GetPermissionOverwrite(Kook.IRole)">
+            <summary>
+                Gets the permission overwrite for a specific role.
+            </summary>
+            <param name="role">The role to get the overwrite from.</param>
+            <returns>
+                An overwrite object for the targeted role; <c>null</c> if none is set.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.AddPermissionOverwriteAsync(Kook.IGuildUser,Kook.RequestOptions)">
+            <summary>
+                Adds the permission overwrite for the given user.
+            </summary>
+            <param name="user">The user to add the overwrite to.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task representing the asynchronous permission operation for adding the specified permissions to the channel.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.AddPermissionOverwriteAsync(Kook.IRole,Kook.RequestOptions)">
+            <summary>
+                Adds the permission overwrite for the given role.
+            </summary>
+            <param name="role">The role to add the overwrite to.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task representing the asynchronous permission operation for adding the specified permissions to the channel.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.RemovePermissionOverwriteAsync(Kook.IGuildUser,Kook.RequestOptions)">
+            <summary>
+                Removes the permission overwrite for the given user, if one exists.
+            </summary>
+            <param name="user">The user to remove the overwrite from.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task representing the asynchronous operation for removing the specified permissions from the channel.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.RemovePermissionOverwriteAsync(Kook.IRole,Kook.RequestOptions)">
+            <summary>
+                Removes the permission overwrite for the given role, if one exists.
+            </summary>
+            <param name="role">The role to remove the overwrite from.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task representing the asynchronous operation for removing the specified permissions from the channel.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.ModifyPermissionOverwriteAsync(Kook.IGuildUser,System.Func{Kook.OverwritePermissions,Kook.OverwritePermissions},Kook.RequestOptions)">
+            <summary>
+                Updates the permission overwrite for the given user, if one exists.
+            </summary>
+            <param name="user">The user to modify the overwrite for.</param>
+            <param name="func">A delegate containing the values to modify the permission overwrite with.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task representing the asynchronous operation for removing the specified permissions from the channel.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.ModifyPermissionOverwriteAsync(Kook.IRole,System.Func{Kook.OverwritePermissions,Kook.OverwritePermissions},Kook.RequestOptions)">
+            <summary>
+                Updates the permission overwrite for the given role, if one exists.
+            </summary>
+            <param name="role">The role to remove the overwrite for.</param>
+            <param name="func">A delegate containing the values to modify the permission overwrite with.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task representing the asynchronous operation for removing the specified permissions from the channel.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.ToString">
+            <summary>
+                Gets the name of this channel.
+            </summary>
+            <returns>
+                A string that is the name of this channel.
+            </returns>
+        </member>
+        <member name="P:Kook.Rest.RestGuildChannel.Kook#IGuildChannel#Guild">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.Kook#IGuildChannel#GetPermissionOverwrite(Kook.IRole)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.Kook#IGuildChannel#GetPermissionOverwrite(Kook.IUser)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.Kook#IGuildChannel#AddPermissionOverwriteAsync(Kook.IRole,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.Kook#IGuildChannel#AddPermissionOverwriteAsync(Kook.IGuildUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.Kook#IGuildChannel#RemovePermissionOverwriteAsync(Kook.IRole,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.Kook#IGuildChannel#RemovePermissionOverwriteAsync(Kook.IGuildUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.Kook#IGuildChannel#ModifyPermissionOverwriteAsync(Kook.IRole,System.Func{Kook.OverwritePermissions,Kook.OverwritePermissions},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.Kook#IGuildChannel#ModifyPermissionOverwriteAsync(Kook.IGuildUser,System.Func{Kook.OverwritePermissions,Kook.OverwritePermissions},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.Kook#IGuildChannel#GetUsersAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.Kook#IGuildChannel#GetUserAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.Kook#IGuildChannel#GetCreatorAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.Kook#IChannel#GetUsersAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildChannel.Kook#IChannel#GetUserAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestTextChannel">
+            <summary>
+                Represents a REST-based channel in a guild that can send and receive messages.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestTextChannel.Topic">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestTextChannel.SlowModeInterval">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestTextChannel.CategoryId">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestTextChannel.IsPermissionSynced">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestTextChannel.KMarkdownMention">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestTextChannel.PlainTextMention">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Update(Kook.API.Channel)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.ModifyAsync(System.Action{Kook.ModifyTextChannelProperties},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.GetUserAsync(System.UInt64,Kook.RequestOptions)">
+            <summary>
+                Gets a user in this channel.
+            </summary>
+            <param name="id">The identifier of the user.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Resolving permissions requires the parent guild to be downloaded.
+            </exception>
+            <returns>
+                A task representing the asynchronous get operation. The task result contains a guild user object that
+                represents the user; <c>null</c> if none is found.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.GetUsersAsync(Kook.RequestOptions)">
+            <summary>
+                Gets a collection of users that are able to view the channel.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Resolving permissions requires the parent guild to be downloaded.
+            </exception>
+            <returns>
+                A paged collection containing a collection of guild users that can access this channel. Flattening the
+                paginated response into a collection of users with
+                <see cref="M:Kook.AsyncEnumerableExtensions.FlattenAsync``1(System.Collections.Generic.IAsyncEnumerable{System.Collections.Generic.IEnumerable{``0}})"/> is required if you wish to access the users.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.GetMessageAsync(System.Guid,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.GetMessagesAsync(System.Int32,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.GetMessagesAsync(System.Guid,Kook.Direction,System.Int32,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.GetMessagesAsync(Kook.IMessage,Kook.Direction,System.Int32,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.GetPinnedMessagesAsync(Kook.RequestOptions)">
+            <inheritdoc cref="M:Kook.ITextChannel.GetPinnedMessagesAsync(Kook.RequestOptions)" />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.SendFileAsync(System.String,System.String,Kook.AttachmentType,Kook.Quote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc cref="M:Kook.IMessageChannel.SendFileAsync(System.String,System.String,Kook.AttachmentType,Kook.IQuote,Kook.IUser,Kook.RequestOptions)"/>
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.SendFileAsync(System.IO.Stream,System.String,Kook.AttachmentType,Kook.Quote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc cref="M:Kook.IMessageChannel.SendFileAsync(System.IO.Stream,System.String,Kook.AttachmentType,Kook.IQuote,Kook.IUser,Kook.RequestOptions)"/>
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.SendFileAsync(Kook.FileAttachment,Kook.Quote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc cref="M:Kook.IMessageChannel.SendFileAsync(Kook.FileAttachment,Kook.IQuote,Kook.IUser,Kook.RequestOptions)"/>
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.SendTextAsync(System.String,Kook.Quote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc cref="M:Kook.IMessageChannel.SendTextAsync(System.String,Kook.IQuote,Kook.IUser,Kook.RequestOptions)"/>
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.SendCardsAsync(System.Collections.Generic.IEnumerable{Kook.ICard},Kook.Quote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc cref="M:Kook.IMessageChannel.SendCardsAsync(System.Collections.Generic.IEnumerable{Kook.ICard},Kook.IQuote,Kook.IUser,Kook.RequestOptions)"/>
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.SendCardAsync(Kook.ICard,Kook.Quote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc cref="M:Kook.IMessageChannel.SendCardAsync(Kook.ICard,Kook.IQuote,Kook.IUser,Kook.RequestOptions)"/>
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.GetCategoryAsync(Kook.RequestOptions)">
+            <summary>
+                Gets the parent (category) channel of this channel.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the category channel
+                representing the parent of this channel; <c>null</c> if none is set.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.SyncPermissionsAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.GetInvitesAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.CreateInviteAsync(System.Nullable{System.Int32},System.Nullable{System.Int32},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.CreateInviteAsync(Kook.InviteMaxAge,Kook.InviteMaxUses,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#IChannel#GetUserAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#IChannel#GetUsersAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#IGuildChannel#GetUserAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#IGuildChannel#GetUsersAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#IMessageChannel#SendFileAsync(System.String,System.String,Kook.AttachmentType,Kook.IQuote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#IMessageChannel#SendFileAsync(System.IO.Stream,System.String,Kook.AttachmentType,Kook.IQuote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#IMessageChannel#SendFileAsync(Kook.FileAttachment,Kook.IQuote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#IMessageChannel#SendTextAsync(System.String,Kook.IQuote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#IMessageChannel#SendCardAsync(Kook.ICard,Kook.IQuote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#IMessageChannel#SendCardsAsync(System.Collections.Generic.IEnumerable{Kook.ICard},Kook.IQuote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#IMessageChannel#GetMessageAsync(System.Guid,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#IMessageChannel#GetMessagesAsync(System.Int32,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#IMessageChannel#GetMessagesAsync(System.Guid,Kook.Direction,System.Int32,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#IMessageChannel#GetMessagesAsync(Kook.IMessage,Kook.Direction,System.Int32,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#ITextChannel#GetPinnedMessagesAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.DeleteMessageAsync(System.Guid,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.DeleteMessageAsync(Kook.IMessage,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.ModifyMessageAsync(System.Guid,System.Action{Kook.MessageProperties},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestTextChannel.Kook#INestedChannel#GetCategoryAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestVoiceChannel">
+            <summary>
+                Represents a REST-based voice channel in a guild.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestVoiceChannel.VoiceQuality">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestVoiceChannel.UserLimit">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestVoiceChannel.CategoryId">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestVoiceChannel.ServerUrl">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestVoiceChannel.IsVoiceRegionOverwritten">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestVoiceChannel.VoiceRegion">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestVoiceChannel.HasPassword">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestVoiceChannel.IsPermissionSynced">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestVoiceChannel.KMarkdownMention">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestVoiceChannel.PlainTextMention">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestVoiceChannel.Update(Kook.API.Channel)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestVoiceChannel.ModifyAsync(System.Action{Kook.ModifyVoiceChannelProperties},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestVoiceChannel.GetConnectedUsersAsync(Kook.RequestOptions)">
+            <summary>
+                Gets the users connected to this voice channel.
+            </summary>
+            <param name="options"> The options to be used when sending the request. </param>
+            <returns> A task that represents the asynchronous get operation. The task result contains a collection of users. </returns>
+        </member>
+        <member name="M:Kook.Rest.RestVoiceChannel.GetCategoryAsync(Kook.RequestOptions)">
+            <summary>
+                Gets the parent (category) channel of this channel.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the category channel
+                representing the parent of this channel; <c>null</c> if none is set.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestVoiceChannel.SyncPermissionsAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestVoiceChannel.GetInvitesAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestVoiceChannel.CreateInviteAsync(System.Nullable{System.Int32},System.Nullable{System.Int32},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestVoiceChannel.CreateInviteAsync(Kook.InviteMaxAge,Kook.InviteMaxUses,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestVoiceChannel.Kook#IGuildChannel#GetUserAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestVoiceChannel.Kook#IGuildChannel#GetUsersAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestVoiceChannel.Kook#INestedChannel#GetCategoryAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestGame">
+            <summary>
+                Represents a game object.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestGame.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGame.GameType">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGame.Options">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGame.RequireAdminPrivilege">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGame.Icon">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGame.ProductNames">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGame.ProcessNames">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGame.ModifyAsync(System.Action{Kook.GameProperties},Kook.RequestOptions)">
+            <inheritdoc cref="M:Kook.IGame.ModifyAsync(System.Action{Kook.GameProperties},Kook.RequestOptions)" />
+        </member>
+        <member name="M:Kook.Rest.RestGame.DeleteAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGame.Kook#IGame#ModifyAsync(System.Action{Kook.GameProperties},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.GuildHelper.CreateInviteAsync(Kook.IGuild,Kook.Rest.BaseKookClient,System.Nullable{System.Int32},System.Nullable{System.Int32},Kook.RequestOptions)">
+            <exception cref="T:System.ArgumentException">
+            <paramref name="guild.Id.Id"/> may not be equal to zero.
+            <paramref name="maxAge"/> and <paramref name="maxUses"/> must be greater than zero.
+            <paramref name="maxAge"/> must be lesser than 604800.
+            </exception>
+        </member>
+        <member name="M:Kook.Rest.GuildHelper.CreateRoleAsync(Kook.IGuild,Kook.Rest.BaseKookClient,System.String,Kook.RequestOptions)">
+            <exception cref="T:System.ArgumentNullException"><paramref name="name"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Kook.Rest.GuildHelper.CreateTextChannelAsync(Kook.IGuild,Kook.Rest.BaseKookClient,System.String,Kook.RequestOptions,System.Action{Kook.CreateTextChannelProperties})">
+            <exception cref="T:System.ArgumentNullException"><paramref name="name"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Kook.Rest.GuildHelper.CreateVoiceChannelAsync(Kook.IGuild,Kook.Rest.BaseKookClient,System.String,Kook.RequestOptions,System.Action{Kook.CreateVoiceChannelProperties})">
+            <exception cref="T:System.ArgumentNullException"><paramref name="name"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Kook.Rest.GuildHelper.CreateCategoryChannelAsync(Kook.IGuild,Kook.Rest.BaseKookClient,System.String,Kook.RequestOptions,System.Action{Kook.CreateCategoryChannelProperties})">
+            <exception cref="T:System.ArgumentNullException"><paramref name="name"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Kook.Rest.GuildHelper.ModifyEmoteNameAsync(Kook.IGuild,Kook.Rest.BaseKookClient,Kook.IEmote,System.String,Kook.RequestOptions)">
+            <exception cref="T:System.ArgumentNullException"><paramref name="name"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:Kook.Rest.RecommendInfo">
+            <summary>
+                Represents a recommendation information for a guild.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.OpenId">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.DefaultChannelId">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.Icon">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.Banner">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.Description">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.Status">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.Tag">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.Features">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.BoostLevel">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.CustomId">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.IsOfficialPartner">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.Sort">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.AuditStatus">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RecommendInfo.DaysBeforeModify">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestBan">
+            <summary>
+                Represents a REST-based ban object.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestBan.User">
+            <summary>
+                Gets the banned user.
+            </summary>
+            <returns>
+                A generic <see cref="T:Kook.Rest.RestUser"/> object that was banned.
+            </returns>
+        </member>
+        <member name="P:Kook.Rest.RestBan.CreatedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestBan.Reason">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestBan.ToString">
+            <summary>
+                Gets the name of the banned user.
+            </summary>
+            <returns>
+                A string containing the name of the user that was banned.
+            </returns>
+        </member>
+        <member name="P:Kook.Rest.RestBan.Kook#IBan#User">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestGuild">
+            <summary>
+                Represents a REST-based guild/server.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Topic">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.OwnerId">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Icon">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Banner">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.CurrentUserNickname">
+            <summary>
+                Gets the nickname of the current user in this guild.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.CurrentUserDisplayName">
+            <summary>
+                Gets the display name of the current user in this guild.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.CurrentUserRoles">
+            <summary>
+                Gets the roles of the current user in this guild.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.NotifyType">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Region">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.IsOpenEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.OpenId">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.DefaultChannelId">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.WelcomeChannelId">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.MaxBitrate">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.MaxUploadLimit">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.EveryoneRole">
+            <summary>
+                Gets the built-in role containing all users in this guild.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Emotes">
+            <inheritdoc cref="P:Kook.IGuild.Emotes"/>
+            <remarks>
+                <note type="warning">
+                    This property may contain no elements if the current guild is fetched
+                    via <see cref="M:Kook.Rest.KookRestClient.GetGuildAsync(System.UInt64,Kook.RequestOptions)"/>. In this case, you must
+                    use <see cref="M:Kook.Rest.RestGuild.GetEmoteAsync(System.String,Kook.RequestOptions)"/> to retrieve all emotes.
+                </note>
+            </remarks>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Roles">
+            <summary>
+                Gets a collection of all roles in this guild.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.TextChannels">
+            <summary>
+                Gets a collection of all text channels in this guild.
+            </summary>
+            <returns>
+                A read-only collection of message channels found within this guild.
+            </returns>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.VoiceChannels">
+            <summary>
+                Gets a collection of all voice channels in this guild.
+            </summary>
+            <returns>
+                A read-only collection of voice channels found within this guild.
+            </returns>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.CategoryChannels">
+            <summary>
+                Gets a collection of all stage channels in this guild.
+            </summary>
+            <returns>
+                A read-only collection of stage channels found within this guild.
+            </returns>
+            <summary>
+                Gets a collection of all category channels in this guild.
+            </summary>
+            <returns>
+                A read-only collection of category channels found within this guild.
+            </returns>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Channels">
+            <summary>
+                Gets a collection of all channels in this guild.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Features">
+            <summary>
+                Gets the features of this guild.
+            </summary>
+            <returns>
+                An array of objects representing the features of this guild.
+            </returns>
+            <remarks>
+                 <note type="important">
+                    What this property represents is not well investigated.
+                </note>
+            </remarks>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.BoostSubscriptionCount">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.BufferBoostSubscriptionCount">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.BoostLevel">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Status">
+            <summary>
+                TODO: To be documented.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.AutoDeleteTime">
+            <summary>
+                TODO: To be documented.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestGuild.RecommendInfo">
+            <inheritdoc cref="P:Kook.IGuild.RecommendInfo"/>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.UpdateAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.LeaveAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetBoostSubscriptionsAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetActiveBoostSubscriptionsAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetBansAsync(Kook.RequestOptions)">
+            <summary>
+                Gets a collection of all users banned in this guild.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a read-only collection of
+                ban objects that this guild currently possesses, with each object containing the user banned and reason
+                behind the ban.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetBanAsync(Kook.IUser,Kook.RequestOptions)">
+            <summary>
+                Gets a ban object for a banned user.
+            </summary>
+            <param name="user">The banned user.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a ban object, which
+                contains the user information and the reason for the ban; <c>null</c> if the ban entry cannot be found.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetBanAsync(System.UInt64,Kook.RequestOptions)">
+            <summary>
+                Gets a ban object for a banned user.
+            </summary>
+            <param name="userId">The identifier for the banned user.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a ban object, which
+                contains the user information and the reason for the ban; <c>null</c> if the ban entry cannot be found.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.AddBanAsync(Kook.IUser,System.Int32,System.String,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.AddBanAsync(System.UInt64,System.Int32,System.String,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.RemoveBanAsync(Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.RemoveBanAsync(System.UInt64,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetRole(System.UInt32)">
+            <summary>
+                Gets a role in this guild.
+            </summary>
+            <param name="id">The identifier for the role.</param>
+            <returns>
+                A role that is associated with the specified <paramref name="id"/>; <c>null</c> if none is found.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.CreateRoleAsync(System.String,Kook.RequestOptions)">
+            <summary>
+                Creates a new role with the provided name.
+            </summary>
+            <param name="name">The new name for the role.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous creation operation. The task result contains the newly created
+                role.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetUsersAsync(Kook.RequestOptions)">
+            <summary>
+                Gets a collection of all users in this guild.
+            </summary>
+            <remarks>
+                This method retrieves all users found within this guild.
+            </remarks>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a collection of guild
+                users found within this guild.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetUserAsync(System.UInt64,Kook.RequestOptions)">
+            <summary>
+                Gets a user from this guild.
+            </summary>
+            <remarks>
+                This method retrieves a user found within this guild.
+            </remarks>
+            <param name="id">The identifier of the user.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the guild user
+                associated with the specified <paramref name="id"/>; <c>null</c> if none is found.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetCurrentUserAsync(Kook.RequestOptions)">
+            <summary>
+                Gets the current user for this guild.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the currently logged-in
+                user within this guild.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetOwnerAsync(Kook.RequestOptions)">
+            <summary>
+                Gets the owner of this guild.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the owner of this guild.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.SearchUsersAsync(System.Action{Kook.SearchGuildMemberProperties},System.Int32,Kook.RequestOptions)">
+            <summary>
+                Gets a collection of users in this guild that the name or nickname contains the
+                provided <c>string</c> at <paramref name="func"/>.
+            </summary>
+            <remarks>
+                The <paramref name="limit"/> can not be higher than <see cref="F:Kook.KookConfig.MaxUsersPerBatch"/>.
+            </remarks>
+            <param name="func">A delegate containing the properties to search users with.</param>
+            <param name="limit">The maximum number of users to be gotten.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a collection of guild
+                users that matches the properties with the provided <see cref="T:System.Action`1"/> at <paramref name="func"/>.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetChannelsAsync(Kook.RequestOptions)">
+            <summary>
+                Gets a collection of all channels in this guild.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a read-only collection of
+                generic channels found within this guild.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetChannelAsync(System.UInt64,Kook.RequestOptions)">
+            <summary>
+                Gets a channel in this guild.
+            </summary>
+            <param name="id">The identifier for the channel.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the generic channel
+                associated with the specified <paramref name="id"/>; <c>null</c> if none is found.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetTextChannelAsync(System.UInt64,Kook.RequestOptions)">
+            <summary>
+                Gets a text channel in this guild.
+            </summary>
+            <param name="id">The identifier for the text channel.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the text channel
+                associated with the specified <paramref name="id"/>; <c>null</c> if none is found.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetTextChannelsAsync(Kook.RequestOptions)">
+            <summary>
+                Gets a collection of all text channels in this guild.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a read-only collection of
+                message channels found within this guild.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetVoiceChannelAsync(System.UInt64,Kook.RequestOptions)">
+            <summary>
+                Gets a voice channel in this guild.
+            </summary>
+            <param name="id">The identifier for the voice channel.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the voice channel associated
+                with the specified <paramref name="id"/>; <c>null</c> if none is found.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetVoiceChannelsAsync(Kook.RequestOptions)">
+            <summary>
+                Gets a collection of all voice channels in this guild.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a read-only collection of
+                voice channels found within this guild.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetCategoryChannelAsync(System.UInt64,Kook.RequestOptions)">
+            <summary>
+                Gets a category channel in this guild.
+            </summary>
+            <param name="id">The identifier for the category channel.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the category channel associated
+                with the specified <paramref name="id"/>; <c>null</c> if none is found.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetCategoryChannelsAsync(Kook.RequestOptions)">
+            <summary>
+                Gets a collection of all category channels in this guild.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a read-only collection of
+                category channels found within this guild.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetDefaultChannelAsync(Kook.RequestOptions)">
+            <summary>
+                Gets the default text channel in this guild.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the default text channel of this guild;
+                <c>null</c> if none is found.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetWelcomeChannelAsync(Kook.RequestOptions)">
+            <summary>
+                Gets the welcome text channel in this guild.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the welcome text channel of this guild;
+                <c>null</c> if none is found.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.CreateTextChannelAsync(System.String,System.Action{Kook.CreateTextChannelProperties},Kook.RequestOptions)">
+            <summary>
+                Creates a new text channel in this guild.
+            </summary>
+            <param name="name">The new name for the text channel.</param>
+            <param name="func">The delegate containing the properties to be applied to the channel upon its creation.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous creation operation. The task result contains the newly created
+                text channel.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.CreateVoiceChannelAsync(System.String,System.Action{Kook.CreateVoiceChannelProperties},Kook.RequestOptions)">
+            <summary>
+                Creates a voice channel with the provided name.
+            </summary>
+            <param name="name">The name of the new channel.</param>
+            <param name="func">The delegate containing the properties to be applied to the channel upon its creation.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="name" /> is <c>null</c>.</exception>
+            <returns>
+                The created voice channel.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.CreateCategoryChannelAsync(System.String,System.Action{Kook.CreateCategoryChannelProperties},Kook.RequestOptions)">
+            <summary>
+                Creates a category channel with the provided name.
+            </summary>
+            <param name="name">The name of the new channel.</param>
+            <param name="func">The delegate containing the properties to be applied to the channel upon its creation.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="name" /> is <c>null</c>.</exception>
+            <returns>
+                The created category channel.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.MoveUsersAsync(System.Collections.Generic.IEnumerable{Kook.IGuildUser},Kook.IVoiceChannel,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetEmotesAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetEmoteAsync(System.String,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.CreateEmoteAsync(System.String,Kook.Image,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.ModifyEmoteNameAsync(Kook.GuildEmote,System.String,Kook.RequestOptions)">
+            <inheritdoc />
+            <exception cref="T:System.ArgumentNullException"><paramref name="name"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.DeleteEmoteAsync(Kook.GuildEmote,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetInvitesAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.CreateInviteAsync(System.Nullable{System.Int32},System.Nullable{System.Int32},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.CreateInviteAsync(Kook.InviteMaxAge,Kook.InviteMaxUses,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Kook#IGuild#Available">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Kook#IGuild#Roles">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Kook#IGuild#Emotes">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Kook#IGuild#RecommendInfo">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuild.Kook#IGuild#EveryoneRole">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetRole(System.UInt32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#CreateRoleAsync(System.String,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetCurrentUserAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetOwnerAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetUsersAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#DownloadUsersAsync(Kook.RequestOptions)">
+            <inheritdoc />
+            <exception cref="T:System.NotSupportedException">Downloading users is not supported for a REST-based guild.</exception>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#DownloadVoiceStatesAsync(Kook.RequestOptions)">
+            <inheritdoc />
+            <exception cref="T:System.NotSupportedException">Downloading voice states is not supported for a REST-based guild.</exception>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#DownloadBoostSubscriptionsAsync(Kook.RequestOptions)">
+            <inheritdoc />
+            <exception cref="T:System.NotSupportedException">Downloading boost subscriptions is not supported for a REST-based guild.</exception>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#SearchUsersAsync(System.Action{Kook.SearchGuildMemberProperties},System.Int32,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetUserAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetBansAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetBanAsync(Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetBanAsync(System.UInt64,Kook.RequestOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetChannelsAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetChannelAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetDefaultChannelAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetWelcomeChannelAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetTextChannelsAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetTextChannelAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetVoiceChannelsAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetVoiceChannelAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#GetCategoryChannelsAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#CreateTextChannelAsync(System.String,System.Action{Kook.CreateTextChannelProperties},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#CreateVoiceChannelAsync(System.String,System.Action{Kook.CreateVoiceChannelProperties},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.Kook#IGuild#CreateCategoryChannelAsync(System.String,System.Action{Kook.CreateCategoryChannelProperties},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.GetBadgeAsync(Kook.BadgeStyle,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuild.ToString">
+            <summary>
+                Returns the name of the guild.
+            </summary>
+            <returns>
+                The name of the guild.
+            </returns>
+        </member>
+        <member name="T:Kook.Rest.RestIntimacy">
+            <summary>
+                Gets the intimacy information associated with the specified user.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestIntimacy.User">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestIntimacy.SocialInfo">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestIntimacy.LastReadAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestIntimacy.LastModifyAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestIntimacy.Score">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestIntimacy.Images">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestIntimacy.UpdateAsync(System.Action{Kook.IntimacyProperties},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestInvite">
+            <summary>
+                Represents a REST-based invite.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestInvite.Code">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestInvite.Url">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestInvite.Inviter">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestInvite.ChannelType">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestInvite.ChannelId">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestInvite.ChannelName">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestInvite.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestInvite.GuildName">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestInvite.ExpiresAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestInvite.MaxAge">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestInvite.MaxUses">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestInvite.Uses">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestInvite.RemainingUses">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestInvite.UpdateAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestInvite.DeleteAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestInvite.ToString">
+            <summary>
+                Gets the URL of the invite.
+            </summary>
+            <returns>
+                A string that resolves to the Url of the invite.
+            </returns>
+        </member>
+        <member name="P:Kook.Rest.RestInvite.Kook#IInvite#Guild">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestInvite.Kook#IInvite#Channel">
+            <inheritdoc />
+        </member>
+        <member name="F:Kook.Rest.MessageHelper.InlineCodeRegex">
+            <summary>
+            Regex used to check if some text is formatted as inline code.
+            </summary>
+        </member>
+        <member name="F:Kook.Rest.MessageHelper.BlockCodeRegex">
+            <summary>
+            Regex used to check if some text is formatted as a code block.
+            </summary>
+        </member>
+        <member name="T:Kook.Rest.Poke">
+            <summary>
+                Represents a poke in messages.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.Poke.Id">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.Poke.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.Poke.Description">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.Poke.Cooldown">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.Poke.Categories">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.Poke.Label">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.Poke.Icon">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.Poke.Quality">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.Poke.Resource">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.Poke.MessageScenarios">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.Poke.ToString">
+            <summary>
+                Returns the name of the poke.
+            </summary>
+            <returns>
+                A string containing the name of the poke.
+            </returns>
+        </member>
+        <member name="T:Kook.Rest.RestMessage">
+            <summary>
+                Represents a REST-based message.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Channel">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Author">
+            <summary>
+                Gets the Author of the message.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Source">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Content">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.CleanContent">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Attachments">
+            <inheritdoc cref="P:Kook.IMessage.Attachments" />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Timestamp">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.EditedTimestamp">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.MentionedEveryone">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.MentionedHere">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Cards">
+            <summary>
+                Gets a collection of the <see cref="T:Kook.ICard"/>'s on the message.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Embeds">
+            <summary>
+                Gets a collection of the <see cref="T:Kook.IEmbed"/>'s on the message.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Pokes">
+            <summary>
+                Gets a collection of the <see cref="T:Kook.Rest.RestPokeAction"/>'s on the message.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestMessage.MentionedRoleIds">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.MentionedUsers">
+            <summary>
+                Gets a collection of the mentioned users in the message.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Tags">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.IsPinned">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestMessage.ToString">
+            <summary>
+                Gets the <see cref="P:Kook.Rest.RestMessage.Content"/> of the message.
+            </summary>
+            <returns>
+                A string that is the <see cref="P:Kook.Rest.RestMessage.Content"/> of the message.
+            </returns>
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Reactions">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestMessage.DeleteAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestMessage.UpdateAsync(Kook.RequestOptions)">
+            <inheritdoc />
+            <exception cref="T:System.InvalidOperationException">
+                This message is neither a guild channel message nor a direct message.
+            </exception>
+        </member>
+        <member name="M:Kook.Rest.RestMessage.AddReactionAsync(Kook.IEmote,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestMessage.RemoveReactionAsync(Kook.IEmote,Kook.IUser,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestMessage.RemoveReactionAsync(Kook.IEmote,System.UInt64,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestMessage.GetReactionUsersAsync(Kook.IEmote,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Kook#IMessage#Attachments">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Kook#IMessage#Cards">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Kook#IMessage#Embeds">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Kook#IMessage#Pokes">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestMessage.Kook#IMessage#MentionedUserIds">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestPokeAction">
+            <summary>
+                Represents a single REST-based poke action.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestPokeAction.Operator">
+            <inheritdoc cref="P:Kook.IPokeAction.Operator" />
+        </member>
+        <member name="P:Kook.Rest.RestPokeAction.Targets">
+            <inheritdoc cref="P:Kook.IPokeAction.Targets" />
+        </member>
+        <member name="P:Kook.Rest.RestPokeAction.Poke">
+            <inheritdoc cref="P:Kook.IPokeAction.Poke" />
+        </member>
+        <member name="P:Kook.Rest.RestPokeAction.Kook#IPokeAction#Operator">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestPokeAction.Kook#IPokeAction#Targets">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestPokeAction.Kook#IPokeAction#Poke">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestReaction">
+            <summary>
+                Represents a single REST-based reaction.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestReaction.Emote">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestReaction.Count">
+            <summary>
+                Gets the number of reactions added.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestReaction.Me">
+            <summary>
+                Gets whether the reactions is added by the user.
+            </summary>
+        </member>
+        <member name="T:Kook.Rest.RestSystemMessage">
+            <summary>
+                Represents a REST-based system message.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestSystemMessage.SystemMessageType">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestUserMessage">
+            <summary>
+                Represents a REST-based message sent by a user.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.Quote">
+            <inheritdoc cref="P:Kook.IUserMessage.Quote"/>
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.IsPinned">
+            <inheritdoc cref="P:Kook.IMessage.IsPinned"/>
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.Attachments">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.Cards">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.Embeds">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.Pokes">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.MentionedEveryone">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.MentionedHere">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.MentionedRoleIds">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.MentionedRoles">
+            <summary>
+                Gets a collection of the mentioned roles in the message.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.MentionedChannels">
+            <summary>
+                Gets a collection of the mentioned channels in the message.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.Tags">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestUserMessage.Resolve(System.Int32,Kook.TagHandling,Kook.TagHandling,Kook.TagHandling,Kook.TagHandling,Kook.TagHandling)">
+            <summary>
+                Transforms this message's text into a human-readable form by resolving its tags.
+            </summary>
+            <param name="startIndex">The zero-based index at which to begin the resolving for the specified value.</param>
+            <param name="userHandling">Determines how the user tag should be handled.</param>
+            <param name="channelHandling">Determines how the channel tag should be handled.</param>
+            <param name="roleHandling">Determines how the role tag should be handled.</param>
+            <param name="everyoneHandling">Determines how the @everyone tag should be handled.</param>
+            <param name="emojiHandling">Determines how the emoji tag should be handled.</param>
+        </member>
+        <member name="M:Kook.Rest.RestUserMessage.Resolve(Kook.TagHandling,Kook.TagHandling,Kook.TagHandling,Kook.TagHandling,Kook.TagHandling)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestUserMessage.ModifyAsync(System.Action{Kook.MessageProperties},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.Kook#IMessage#IsPinned">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.Kook#IUserMessage#Quote">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.Kook#IMessage#Cards">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUserMessage.Kook#IMessage#Embeds">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestEntity`1">
+            <summary>
+                Represents a generic REST-based entity.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Kook.Rest.RestEntity`1.Id">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestRole">
+            <summary>
+                Represents a REST-based role.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestRole.Guild">
+            <summary>
+                Gets the guild that owns this role.
+            </summary>
+            <returns>
+                An <see cref="T:Kook.IGuild"/> representing the parent guild of this role.
+            </returns>
+        </member>
+        <member name="P:Kook.Rest.RestRole.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestRole.Color">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestRole.ColorType">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestRole.GradientColor">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestRole.IsHoisted">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestRole.IsMentionable">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestRole.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestRole.Permissions">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestRole.Position">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestRole.IsEveryone">
+            <summary>
+                Returns a value that determines if the role is an @everyone role.
+            </summary>
+            <returns>
+                <c>true</c> if the role is @everyone; otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="P:Kook.Rest.RestRole.KMarkdownMention">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestRole.PlainTextMention">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestRole.ModifyAsync(System.Action{Kook.RoleProperties},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestRole.DeleteAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestRole.GetUsersAsync(Kook.RequestOptions)">
+            <inheritdoc cref="M:Kook.IRole.GetUsersAsync(Kook.CacheMode,Kook.RequestOptions)"/>
+        </member>
+        <member name="M:Kook.Rest.RestRole.CompareTo(Kook.IRole)">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestRole.Kook#IRole#Guild">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestRole.Kook#IRole#GetUsersAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestRole.ToString">
+            <summary>
+                Gets the name of the role.
+            </summary>
+            <returns>
+                A string that is the name of the role.
+            </returns>
+        </member>
+        <member name="T:Kook.Rest.RestFriendRequest">
+            <summary>
+                Represents a REST-based friend request.
+            </summary>
+        </member>
+        <member name="M:Kook.Rest.RestFriendRequest.#ctor(Kook.Rest.BaseKookClient,System.UInt64)">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestFriendRequest.User">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestFriendRequest.AcceptAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestFriendRequest.DeclineAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestGuildUser">
+            <summary>
+                Represents a REST-based guild user.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.DisplayName">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.Nickname">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.GuildId">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.IsMobileVerified">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.JoinedAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.ActiveAt">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.Color">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.IsOwner">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.GuildPermissions">
+            <inheritdoc />
+            <exception cref="T:System.InvalidOperationException" accessor="get">Resolving permissions requires the parent guild to be downloaded.</exception>
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.RoleIds">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.PlainTextMention">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.UpdateAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.ModifyNicknameAsync(System.String,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.GetBoostSubscriptionsAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.KickAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.AddRoleAsync(System.UInt32,Kook.RequestOptions)">
+            <inheritdoc />
+            <note type="warning">
+                This method will update the cached roles of this user.
+                To update the cached roles of this user, please use <see cref="M:Kook.Rest.RestGuildUser.UpdateAsync(Kook.RequestOptions)"/>.
+            </note>
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.AddRoleAsync(Kook.IRole,Kook.RequestOptions)">
+            <inheritdoc />
+            <note type="warning">
+                This method will update the cached roles of this user.
+                To update the cached roles of this user, please use <see cref="M:Kook.Rest.RestGuildUser.UpdateAsync(Kook.RequestOptions)"/>.
+            </note>
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.AddRolesAsync(System.Collections.Generic.IEnumerable{System.UInt32},Kook.RequestOptions)">
+            <inheritdoc />
+            <note type="warning">
+                This method will update the cached roles of this user.
+                To update the cached roles of this user, please use <see cref="M:Kook.Rest.RestGuildUser.UpdateAsync(Kook.RequestOptions)"/>.
+            </note>
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.AddRolesAsync(System.Collections.Generic.IEnumerable{Kook.IRole},Kook.RequestOptions)">
+            <inheritdoc />
+            <note type="warning">
+                This method will update the cached roles of this user.
+                To update the cached roles of this user, please use <see cref="M:Kook.Rest.RestGuildUser.UpdateAsync(Kook.RequestOptions)"/>.
+            </note>
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.RemoveRoleAsync(System.UInt32,Kook.RequestOptions)">
+            <inheritdoc />
+            <note type="warning">
+                This method will update the cached roles of this user.
+                To update the cached roles of this user, please use <see cref="M:Kook.Rest.RestGuildUser.UpdateAsync(Kook.RequestOptions)"/>.
+            </note>
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.RemoveRoleAsync(Kook.IRole,Kook.RequestOptions)">
+            <inheritdoc />
+            <note type="warning">
+                This method will update the cached roles of this user.
+                To update the cached roles of this user, please use <see cref="M:Kook.Rest.RestGuildUser.UpdateAsync(Kook.RequestOptions)"/>.
+            </note>
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.RemoveRolesAsync(System.Collections.Generic.IEnumerable{System.UInt32},Kook.RequestOptions)">
+            <inheritdoc />
+            <note type="warning">
+                This method will update the cached roles of this user.
+                To update the cached roles of this user, please use <see cref="M:Kook.Rest.RestGuildUser.UpdateAsync(Kook.RequestOptions)"/>.
+            </note>
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.RemoveRolesAsync(System.Collections.Generic.IEnumerable{Kook.IRole},Kook.RequestOptions)">
+            <inheritdoc />
+            <note type="warning">
+                This method will update the cached roles of this user.
+                To update the cached roles of this user, please use <see cref="M:Kook.Rest.RestGuildUser.UpdateAsync(Kook.RequestOptions)"/>.
+            </note>
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.MuteAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.DeafenAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.UnmuteAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.UndeafenAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.GetConnectedVoiceChannelsAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.GetPermissions(Kook.IGuildChannel)">
+            <inheritdoc />
+            <exception cref="T:System.InvalidOperationException">Resolving permissions requires the parent guild to be downloaded.</exception>
+        </member>
+        <member name="M:Kook.Rest.RestGuildUser.RequestFriendAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.Kook#IGuildUser#Guild">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.Kook#IVoiceState#IsMuted">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.Kook#IVoiceState#IsDeafened">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestGuildUser.Kook#IVoiceState#VoiceChannel">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestPresence">
+            <summary>
+                Represents the REST user's presence status. This may include their online status and their activity.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestPresence.IsOnline">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestPresence.ActiveClient">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestPresence.ConvertClientType(System.String)">
+            <summary>
+                The client type where a user is active.
+            </summary>
+            <param name="clientType">
+                A string representing the client type.
+            </param>
+            <returns>
+                A <see cref="T:Kook.ClientType"/> that this user is active.
+            </returns>
+        </member>
+        <member name="T:Kook.Rest.RestSelfUser">
+            <summary>
+                Represents the logged-in REST-based user.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestSelfUser.MobilePrefix">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestSelfUser.Mobile">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestSelfUser.InvitedCount">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestSelfUser.IsMobileVerified">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestSelfUser.UpdateAsync(Kook.RequestOptions)">
+            <inheritdoc />
+            <exception cref="T:System.InvalidOperationException">Unable to update this object using a different token.</exception>
+        </member>
+        <member name="M:Kook.Rest.RestSelfUser.StartPlayingAsync(Kook.IGame,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestSelfUser.StartPlayingAsync(Kook.Music,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestSelfUser.StopPlayingAsync(Kook.ActivityType,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.RestUser">
+            <summary>
+                Represents a REST-based user.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.RestUser.Username">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.IdentifyNumberValue">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.IsBot">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.IsBanned">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.HasBuff">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.HasAnnualBuff">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.Avatar">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.BuffAvatar">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.Banner">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.IsDenoiseEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.UserTag">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.Nameplates">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.IsSystemUser">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.IdentifyNumber">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.KMarkdownMention">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.PlainTextMention">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.IsOnline">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Rest.RestUser.ActiveClient">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestUser.UpdateAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestUser.CreateDMChannelAsync(Kook.RequestOptions)">
+            <summary>
+                Creates a direct message channel to this user.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a rest DM channel where the user is the recipient.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestUser.GetIntimacyAsync(Kook.RequestOptions)">
+            <summary>
+                Gets the intimacy information with this user.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous operation for getting the intimacy information. The task result
+                contains the intimacy information associated with this user.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestUser.UpdateIntimacyAsync(System.Action{Kook.IntimacyProperties},Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestUser.BlockAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestUser.UnblockAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestUser.RequestFriendAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestUser.RemoveFriendAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestUser.ToString">
+            <summary>
+                Gets the Username#IdentifyNumber of the user.
+            </summary>
+            <returns>
+                A string that resolves to Username#IdentifyNumber of the user.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.RestUser.Kook#IUser#CreateDMChannelAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.RestUser.Kook#IUser#GetIntimacyAsync(Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.CardJsonExtension">
+            <summary>
+                Provides extension methods for <see cref="T:Kook.Card"/> and <see cref="T:Kook.CardBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:Kook.Rest.CardJsonExtension.TryParseSingle(System.String,Kook.ICardBuilder@)">
+            <summary>
+                Tries to parse a string into an <see cref="T:Kook.ICardBuilder"/>.
+            </summary>
+            <param name="json">The json string to parse.</param>
+            <param name="builder">The <see cref="T:Kook.ICardBuilder"/> with populated values. An empty instance if method returns <c>false</c>.</param>
+            <returns><c>true</c> if <paramref name="json"/> was successfully parsed. <c>false</c> if not.</returns>
+        </member>
+        <member name="M:Kook.Rest.CardJsonExtension.TryParseMany(System.String,System.Collections.Generic.IEnumerable{Kook.ICardBuilder}@)">
+            <summary>
+                Tries to parse a string into an <see cref="T:Kook.ICardBuilder"/>.
+            </summary>
+            <param name="json">The json string to parse.</param>
+            <param name="builders">A collection of <see cref="T:Kook.ICardBuilder"/> with populated values. An empty instance if method returns <c>false</c>.</param>
+            <returns><c>true</c> if <paramref name="json"/> was successfully parsed. <c>false</c> if not.</returns>
+        </member>
+        <member name="M:Kook.Rest.CardJsonExtension.ParseSingle(System.String)">
+            <summary>
+                Parses a string into an <see cref="T:Kook.ICardBuilder"/>.
+            </summary>
+            <param name="json">The json string to parse.</param>
+            <returns>An <see cref="T:Kook.ICardBuilder"/> with populated values from the passed <paramref name="json"/>.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown if the string passed is not valid json.</exception>
+        </member>
+        <member name="M:Kook.Rest.CardJsonExtension.ParseMany(System.String)">
+            <summary>
+                Parses a string into a collection of <see cref="T:Kook.ICardBuilder"/>s.
+            </summary>
+            <param name="json">The json string to parse.</param>
+            <returns>A collection of <see cref="T:Kook.ICardBuilder"/>s with populated values from the passed <paramref name="json"/>.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown if the string passed is not valid json.</exception>
+        </member>
+        <member name="M:Kook.Rest.CardJsonExtension.ToJsonString(Kook.ICardBuilder,System.Boolean)">
+            <summary>
+                Gets a Json formatted <c>string</c> from an <see cref="T:Kook.CardBuilder"/>.
+            </summary>
+            <remarks>
+                See <see cref="M:Kook.Rest.CardJsonExtension.TryParseSingle(System.String,Kook.ICardBuilder@)"/> to parse Json back into card.
+            </remarks>
+            <param name="builder">The builder to format as Json <c>string</c>.</param>
+            <param name="writeIndented">Whether to write the json with indents.</param>
+            <returns>A Json <c>string</c> containing the data from the <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:Kook.Rest.CardJsonExtension.ToJsonString(Kook.ICard,System.Boolean)">
+            <summary>
+                Gets a Json formatted <c>string</c> from an <see cref="T:Kook.Card"/>.
+            </summary>
+            <remarks>
+                See <see cref="M:Kook.Rest.CardJsonExtension.TryParseSingle(System.String,Kook.ICardBuilder@)"/> to parse Json back into card.
+            </remarks>
+            <param name="card">The card to format as Json <c>string</c>.</param>
+            <param name="writeIndented">Whether to write the json with indents.</param>
+            <returns>A Json <c>string</c> containing the data from the <paramref name="card"/>.</returns>
+        </member>
+        <member name="T:Kook.Rest.KookRestClient">
+            <summary>
+                Represents a REST-based KOOK client.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.KookRestClient.CurrentUser">
+            <summary>
+                Gets the logged-in user.
+            </summary>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.#ctor">
+            <summary>
+                Initializes a new REST-based KOOK client with the default configuration.
+            </summary>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.#ctor(Kook.Rest.KookRestConfig)">
+            <summary>
+                Initializes a new REST-based KOOK client with the specified configuration.
+            </summary>
+            <param name="config"> The configuration to use. </param>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.OnLoginAsync(Kook.TokenType,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.OnLogoutAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.GetGuildAsync(System.UInt64,Kook.RequestOptions)">
+            <summary>
+                Gets a guild.
+            </summary>
+            <param name="id">The guild identifier.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the guild associated
+                with the identifier; <c>null</c> when the guild cannot be found.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.GetGuildsAsync(Kook.RequestOptions)">
+            <summary>
+                Gets a collection of guilds that the user is currently in.
+            </summary>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a read-only collection
+                of guilds that the current user is in.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.GetChannelAsync(System.UInt64,Kook.RequestOptions)">
+            <summary>
+                Gets a generic channel.
+            </summary>
+            <param name="id">The identifier of the channel.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the channel associated
+                with the identifier; <c>null</c> when the channel cannot be found.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.GetDMChannelAsync(System.Guid,Kook.RequestOptions)">
+            <summary>
+                Gets a direct message channel.
+            </summary>
+            <param name="chatCode">The identifier of the channel.</param>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a read-only collection
+                of direct-message channels that the user currently partakes in.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.GetDMChannelsAsync(Kook.RequestOptions)">
+            <summary>
+                Gets a collection of direct message channels opened in this session.
+            </summary>
+            <remarks>
+                This method returns a collection of currently opened direct message channels.
+                <note type="warning">
+                    This method will not return previously opened DM channels outside of the current session! If you
+                    have just started the client, this may return an empty collection.
+                </note>
+            </remarks>
+            <param name="options">The options to be used when sending the request.</param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a read-only collection
+                of direct-message channels that the user currently partakes in.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.AddRoleAsync(System.UInt64,System.UInt64,System.UInt32)">
+            <summary>
+                Adds the specified role to this user in the guild.
+            </summary>
+            <param name="guildId"> The guild where the role and user are located. </param>
+            <param name="userId"> The user to add the role to. </param>
+            <param name="roleId"> The role to be added to the user. </param>
+            <returns>
+                A task that represents the asynchronous role addition operation.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.RemoveRoleAsync(System.UInt64,System.UInt64,System.UInt32)">
+            <summary>
+                Removes the specified <paramref name="roleId"/> from this user in the guild.
+            </summary>
+            <param name="guildId"> The guild where the role and user are located. </param>
+            <param name="userId"> The user to remove the role from. </param>
+            <param name="roleId"> The role to be removed from the user. </param>
+            <returns>
+                A task that represents the asynchronous role removal operation.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.GetUserAsync(System.UInt64,Kook.RequestOptions)">
+            <summary>
+                Gets a user.
+            </summary>
+            <param name="id"> The identifier of the user (e.g. `168693960628371456`). </param>
+            <param name="options"> The options to be used when sending the request. </param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the user associated with
+                the identifier; <c>null</c> if the user is not found.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.GetGuildUserAsync(System.UInt64,System.UInt64,Kook.RequestOptions)">
+            <summary>
+                Gets a user from a guild.
+            </summary>
+            <param name="guildId"> The identifier of the guild where the user is located. </param>
+            <param name="id"> The identifier of the user (e.g. `168693960628371456`). </param>
+            <param name="options"> The options to be used when sending the request. </param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains the user from a guild
+                associated with the identifier; <c>null</c> if the user is not found in the guild.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.GetFriendsAsync(Kook.RequestOptions)">
+            <summary>
+                Gets friends.
+            </summary>
+            <param name="options"> The options to be used when sending the request. </param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a collection of users
+                that are friends with the current user.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.GetFriendRequestsAsync(Kook.RequestOptions)">
+            <summary>
+                Gets friend requests.
+            </summary>
+            <param name="options"> The options to be used when sending the request. </param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a collection of
+                friend requests that the current user has received.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.GetBlockedUsersAsync(Kook.RequestOptions)">
+            <summary>
+                Gets blocked users.
+            </summary>
+            <param name="options"> The options to be used when sending the request. </param>
+            <returns>
+                A task that represents the asynchronous get operation. The task result contains a collection of users
+                that are blocked by the current user.
+            </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.AddReactionAsync(System.Guid,Kook.IEmote,Kook.RequestOptions)">
+            <summary>
+                Adds a reaction to a message.
+            </summary>
+            <param name="messageId"> The identifier of the message. </param>
+            <param name="emote"> The emoji used to react to the message. </param>
+            <param name="options"> The options to be used when sending the request. </param>
+            <returns>
+                A task that represents the asynchronous operation for adding a reaction to the message.
+            </returns>
+            <seealso cref="T:Kook.IEmote"/>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.RemoveReactionAsync(System.Guid,System.UInt64,Kook.IEmote,Kook.RequestOptions)">
+            <summary>
+                Removes a reaction from a message.
+            </summary>
+            <param name="messageId"> The identifier of the message. </param>
+            <param name="userId"> The identifier of the user who added the reaction. </param>
+            <param name="emote"> The emoji used to remove from the message. </param>
+            <param name="options"> The options to be used when sending the request. </param>
+            <returns>
+                A task that represents the asynchronous operation for removing a reaction from the message.
+            </returns>
+            <seealso cref="T:Kook.IEmote"/>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.AddDirectMessageReactionAsync(System.Guid,Kook.IEmote,Kook.RequestOptions)">
+            <summary>
+                Adds a reaction to a direct message.
+            </summary>
+            <param name="messageId"> The identifier of the direct message. </param>
+            <param name="emote"> The emoji used to react to the message. </param>
+            <param name="options"> The options to be used when sending the request. </param>
+            <returns>
+                A task that represents the asynchronous operation for adding a reaction to the direct message.
+            </returns>
+            <seealso cref="T:Kook.IEmote"/>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.RemoveDirectMessageReactionAsync(System.Guid,System.UInt64,Kook.IEmote,Kook.RequestOptions)">
+            <summary>
+                Removes a reaction from a direct message.
+            </summary>
+            <param name="messageId"> The identifier of the direct message. </param>
+            <param name="userId"> The identifier of the user who added the reaction. </param>
+            <param name="emote"> The emoji used to remove from the message. </param>
+            <param name="options"> The options to be used when sending the request. </param>
+            <returns>
+                A task that represents the asynchronous operation for removing a reaction from the direct message.
+            </returns>
+            <seealso cref="T:Kook.IEmote"/>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.CreateAssetAsync(System.String,System.String,Kook.RequestOptions)">
+            <summary>
+                Creates an asset from a file path.
+            </summary>
+            <param name="path"> The path to the file. </param>
+            <param name="fileName"> The name of the file. </param>
+            <param name="options"> The options to be used when sending the request. </param>
+            <returns> The asset resource URI of the uploaded file. </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.CreateAssetAsync(System.IO.Stream,System.String,Kook.RequestOptions)">
+            <summary>
+                Creates an asset from a stream.
+            </summary>
+            <param name="stream"> The stream to the file. </param>
+            <param name="fileName"> The name of the file. </param>
+            <param name="options"> The options to be used when sending the request. </param>
+            <returns> The asset resource URI of the uploaded file. </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.GetGamesAsync(System.Nullable{Kook.GameCreationSource},Kook.RequestOptions)">
+            <summary>
+                Gets games information.
+            </summary>
+            <param name="source">
+                Specifies whether to return games information created by the current user or
+                by the system by default; <c>null</c> to return all games information.
+            </param>
+            <param name="options"> The options to be used when sending the request. </param>
+            <returns> A collection of games information. </returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.CreateGameAsync(System.String,System.String,System.String,Kook.RequestOptions)">
+            <summary>
+                Creates game information.
+            </summary>
+            <param name="name"> The name of the game. </param>
+            <param name="processName"> The process name of the game. </param>
+            <param name="iconUrl"> The icon URI of the game. </param>
+            <param name="options"> The options to be used when sending the request. </param>
+            <returns></returns>
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.Kook#IKookClient#GetGuildAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.Kook#IKookClient#GetGuildsAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.Kook#IKookClient#GetUserAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.Kook#IKookClient#GetFriendsAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.Kook#IKookClient#GetFriendRequestsAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.Kook#IKookClient#GetBlockedUsersAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.Kook#IKookClient#GetChannelAsync(System.UInt64,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.Kook#IKookClient#GetDMChannelAsync(System.Guid,Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Rest.KookRestClient.Kook#IKookClient#GetDMChannelsAsync(Kook.CacheMode,Kook.RequestOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Rest.KookRestConfig">
+            <summary>
+                Represents a configuration class for <see cref="T:Kook.Rest.KookRestClient"/>.
+            </summary>
+        </member>
+        <member name="P:Kook.Rest.KookRestConfig.RestClientProvider">
+            <summary>
+                Gets or sets the <see cref="T:Kook.Net.Rest.RestClientProvider"/> to use.
+            </summary>
+        </member>
+        <member name="T:Kook.Attachment">
+            <inheritdoc cref="T:Kook.IAttachment"/>
+        </member>
+        <member name="P:Kook.Attachment.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Attachment.Url">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Attachment.Filename">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Attachment.Size">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Attachment.FileType">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Attachment.Duration">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Attachment.Width">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Attachment.Height">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Attachment.ToString">
+            <summary>
+                Returns the filename of this attachment.
+            </summary>
+            <returns>
+                A string containing the filename of this attachment.
+            </returns>
+        </member>
+    </members>
+</doc>

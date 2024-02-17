@@ -1,0 +1,4 @@
+displayName = Kook Bot
+author = Cyrilly
+version = 0.1
+dllReferences = Kook.Net, Kook.Net.Commands, Kook.Net.Core, Kook.Net.Rest, Kook.Net.WebSocket, System.Collections.Immutable, System.Text.Json, System.Text.Encodings.Web, System.Linq.Async

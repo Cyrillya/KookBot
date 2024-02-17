@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\tModLoader.targets" />
+  <PropertyGroup>
+    <AssemblyName>KookBot</AssemblyName>
+    <TargetFramework>net6.0</TargetFramework>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Kook.Net">
+      <HintPath>lib\Kook.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Kook.Net.Commands">
+      <HintPath>lib\Kook.Net.Commands.dll</HintPath>
+    </Reference>
+    <Reference Include="Kook.Net.Core">
+      <HintPath>lib\Kook.Net.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Kook.Net.Rest">
+      <HintPath>lib\Kook.Net.Rest.dll</HintPath>
+    </Reference>
+    <Reference Include="Kook.Net.WebSocket">
+      <HintPath>lib\Kook.Net.WebSocket.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

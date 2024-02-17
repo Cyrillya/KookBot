@@ -1,0 +1,2672 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Kook.Net.Commands</name>
+    </assembly>
+    <members>
+        <member name="T:Kook.Commands.AliasAttribute">
+            <summary>
+                Marks the aliases for a command.
+            </summary>
+            <remarks>
+                This attribute allows a command to have one or multiple aliases. In other words, the base command can have
+                multiple aliases when triggering the command itself, giving the end-user more freedom of choices when giving
+                hot-words to trigger the desired command. See the example for a better illustration.
+            </remarks>
+            <example>
+                In the following example, the command can be triggered with the base name, "stats", or either "stat" or
+                "info".
+                <code language="cs">
+                [Command("stats")]
+                [Alias("stat", "info")]
+                public <c>async</c> Task GetStatsAsync(IUser user)
+                {
+                    // ...pull stats
+                }
+                </code>
+            </example>
+        </member>
+        <member name="P:Kook.Commands.AliasAttribute.Aliases">
+            <summary>
+                Gets the aliases which have been defined for the command.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.AliasAttribute.#ctor(System.String[])">
+            <summary>
+                Creates a new <see cref="T:Kook.Commands.AliasAttribute" /> with the given aliases.
+            </summary>
+        </member>
+        <member name="T:Kook.Commands.CommandAttribute">
+            <summary>
+                Marks the execution information for a command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandAttribute.Text">
+            <summary>
+                Gets the text that has been set to be recognized as a command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandAttribute.RunMode">
+            <summary>
+                Specifies the <see cref="P:Kook.Commands.CommandAttribute.RunMode" /> of the command. This affects how the command is executed.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandAttribute.IgnoreExtraArgs">
+            <summary>
+                Indicates whether extra arguments should be ignored for this command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandAttribute.Summary">
+            <summary>
+                Attaches a summary to your command.
+            </summary>
+            <remarks>
+                <see cref="P:Kook.Commands.CommandAttribute.Summary"/> overrides the value of this property if present.
+            </remarks>
+        </member>
+        <member name="P:Kook.Commands.CommandAttribute.Aliases">
+            <summary>
+                Marks the aliases for a command.
+            </summary>
+            <remarks>
+                <see cref="T:Kook.Commands.AliasAttribute"/> extends the base value of this if present.
+            </remarks>
+        </member>
+        <member name="P:Kook.Commands.CommandAttribute.Remarks">
+            <summary>
+                Attaches remarks to your commands.
+            </summary>
+            <remarks>
+                <see cref="T:Kook.Commands.RemainderAttribute"/> overrides the value of this property if present.
+            </remarks>
+        </member>
+        <member name="M:Kook.Commands.CommandAttribute.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Commands.CommandAttribute.#ctor(System.String)">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.CommandAttribute" /> attribute with the specified name.
+            </summary>
+            <param name="text">The name of the command.</param>
+        </member>
+        <member name="M:Kook.Commands.CommandAttribute.#ctor(System.String,System.Boolean,System.String,System.String[],System.String)">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.CommandAttribute" /> attribute with the specified name
+                and mode of whether to ignore extra arguments.
+            </summary>
+            <param name="text"> The name of the command. </param>
+            <param name="ignoreExtraArgs"> Whether to ignore extra arguments. </param>
+            <param name="summary"> The summary of the command. </param>
+            <param name="aliases"> The aliases of the command. </param>
+            <param name="remarks"> The remarks of the command. </param>
+        </member>
+        <member name="T:Kook.Commands.DontAutoLoadAttribute">
+            <summary>
+                Prevents the marked module from being loaded automatically.
+            </summary>
+            <remarks>
+                This attribute tells <see cref="T:Kook.Commands.CommandService" /> to ignore the marked module from being loaded
+                automatically (e.g. the <see cref="M:Kook.Commands.CommandService.AddModulesAsync(System.Reflection.Assembly,System.IServiceProvider)" /> method). If a non-public module marked
+                with this attribute is attempted to be loaded manually, the loading process will also fail.
+            </remarks>
+        </member>
+        <member name="T:Kook.Commands.DontInjectAttribute">
+            <summary>
+                Prevents the marked property from being injected into a module.
+            </summary>
+            <remarks>
+                This attribute prevents the marked member from being injected into its parent module. Useful when you have a
+                public property that you do not wish to invoke the library's dependency injection service.
+            </remarks>
+            <example>
+                In the following example, <c>DatabaseService</c> will not be automatically injected into the module and will
+                not throw an error message if the dependency fails to be resolved.
+                <code language="cs">
+                public class MyModule : ModuleBase
+                {
+                    [DontInject]
+                    public DatabaseService DatabaseService;
+                    public MyModule()
+                    {
+                        DatabaseService = DatabaseFactory.Generate();
+                    }
+                }
+                </code>
+            </example>
+        </member>
+        <member name="T:Kook.Commands.GroupAttribute">
+            <summary>
+                Marks the module as a command group.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.GroupAttribute.Prefix">
+            <summary>
+                Gets the prefix set for the module.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.GroupAttribute.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Commands.GroupAttribute.#ctor(System.String)">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.GroupAttribute" /> with the provided prefix.
+            </summary>
+            <param name="prefix">The prefix of the module group.</param>
+        </member>
+        <member name="T:Kook.Commands.NameAttribute">
+            <summary>
+                Marks the public name of a command, module, or parameter.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.NameAttribute.Text">
+            <summary>
+                Gets the name of the command.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.NameAttribute.#ctor(System.String)">
+            <summary>
+                Marks the public name of a command, module, or parameter with the provided name.
+            </summary>
+            <param name="text">The public name of the object.</param>
+        </member>
+        <member name="T:Kook.Commands.NamedArgumentTypeAttribute">
+            <summary>
+            Instructs the command system to treat command parameters of this type
+            as a collection of named arguments matching to its properties.
+            </summary>
+        </member>
+        <member name="T:Kook.Commands.OverrideTypeReaderAttribute">
+            <summary>
+                Marks the <see cref="T:System.Type"/> to be read by the specified <see cref="T:Kook.Commands.TypeReader"/>.
+            </summary>
+            <remarks>
+                This attribute will override the <see cref="T:Kook.Commands.TypeReader"/> to be used when parsing for the
+                desired type in the command. This is useful when one wishes to use a particular
+                <see cref="T:Kook.Commands.TypeReader"/> without affecting other commands that are using the same target
+                type.
+                <note type="warning">
+                    If the given type reader does not inherit from <see cref="T:Kook.Commands.TypeReader"/>, an
+                    <see cref="T:System.ArgumentException"/> will be thrown.
+                </note>
+            </remarks>
+            <example>
+                In this example, the <see cref="T:System.TimeSpan"/> will be read by a custom
+                <see cref="T:Kook.Commands.TypeReader"/>, <c>FriendlyTimeSpanTypeReader</c>, instead of the
+                <see cref="T:Kook.Commands.TimeSpanTypeReader"/> shipped by Kook.Net.
+                <code language="cs">
+                [Command("time")]
+                public Task GetTimeAsync([OverrideTypeReader(typeof(FriendlyTimeSpanTypeReader))]TimeSpan time)
+                    => ReplyAsync(time);
+                </code>
+            </example>
+        </member>
+        <member name="P:Kook.Commands.OverrideTypeReaderAttribute.TypeReader">
+            <summary>
+                Gets the specified <see cref="P:Kook.Commands.OverrideTypeReaderAttribute.TypeReader"/> of the parameter.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.OverrideTypeReaderAttribute.#ctor(System.Type)">
+            <inheritdoc/>
+            <param name="overridenTypeReader">The <see cref="P:Kook.Commands.OverrideTypeReaderAttribute.TypeReader"/> to be used with the parameter. </param>
+            <exception cref="T:System.ArgumentException">The given <paramref name="overridenTypeReader"/> does not inherit from <see cref="P:Kook.Commands.OverrideTypeReaderAttribute.TypeReader"/>.</exception>
+        </member>
+        <member name="T:Kook.Commands.ParameterPreconditionAttribute">
+            <summary>
+                Requires the parameter to pass the specified precondition before execution can begin.
+            </summary>
+            <seealso cref="T:Kook.Commands.PreconditionAttribute"/>
+        </member>
+        <member name="M:Kook.Commands.ParameterPreconditionAttribute.CheckPermissionsAsync(Kook.Commands.ICommandContext,Kook.Commands.ParameterInfo,System.Object,System.IServiceProvider)">
+            <summary>
+                Checks whether the condition is met before execution of the command.
+            </summary>
+            <param name="context">The context of the command.</param>
+            <param name="parameter">The parameter of the command being checked against.</param>
+            <param name="value">The raw value of the parameter.</param>
+            <param name="services">The service collection used for dependency injection.</param>
+        </member>
+        <member name="T:Kook.Commands.PreconditionAttribute">
+            <summary>
+                Requires the module or class to pass the specified precondition before execution can begin.
+            </summary>
+            <seealso cref="T:Kook.Commands.ParameterPreconditionAttribute"/>
+        </member>
+        <member name="P:Kook.Commands.PreconditionAttribute.Group">
+            <summary>
+                Specifies a group that this precondition belongs to.
+            </summary>
+            <remarks>
+                <see cref="T:Kook.Preconditions" /> of the same group require only one of the preconditions to pass in order to
+                be successful (A || B). Specifying <see cref="P:Kook.Commands.PreconditionAttribute.Group" /> = <c>null</c> or not at all will
+                require *all* preconditions to pass, just like normal (A &amp;&amp; B).
+            </remarks>
+        </member>
+        <member name="P:Kook.Commands.PreconditionAttribute.ErrorMessage">
+            <summary>
+            When overridden in a derived class, uses the supplied string
+            as the error message if the precondition doesn't pass.
+            Setting this for a class that doesn't override
+            this property is a no-op.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.PreconditionAttribute.CheckPermissionsAsync(Kook.Commands.ICommandContext,Kook.Commands.CommandInfo,System.IServiceProvider)">
+            <summary>
+                Checks if the <paramref name="command"/> has the sufficient permission to be executed.
+            </summary>
+            <param name="context">The context of the command.</param>
+            <param name="command">The command being executed.</param>
+            <param name="services">The service collection used for dependency injection.</param>
+        </member>
+        <member name="T:Kook.Commands.RequireBotPermissionAttribute">
+            <summary>
+                Requires the bot to have a specific permission in the channel a command is invoked in.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.RequireBotPermissionAttribute.GuildPermission">
+            <summary>
+                Gets the specified <see cref="T:Kook.GuildPermission" /> of the precondition.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.RequireBotPermissionAttribute.ChannelPermission">
+            <summary>
+                Gets the specified <see cref="T:Kook.ChannelPermission" /> of the precondition.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.RequireBotPermissionAttribute.ErrorMessage">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Commands.RequireBotPermissionAttribute.NotAGuildErrorMessage">
+            <summary>
+                Gets or sets the error message if the precondition
+                fails due to being run outside of a Guild channel.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.RequireBotPermissionAttribute.#ctor(Kook.GuildPermission)">
+            <summary>
+                Requires the bot account to have a specific <see cref="T:Kook.GuildPermission"/>.
+            </summary>
+            <remarks>
+                This precondition will always fail if the command is being invoked in a <see cref="T:Kook.IPrivateChannel"/>.
+            </remarks>
+            <param name="permission">
+                The <see cref="T:Kook.GuildPermission"/> that the bot must have. Multiple permissions can be specified
+                by ORing the permissions together.
+            </param>
+        </member>
+        <member name="M:Kook.Commands.RequireBotPermissionAttribute.#ctor(Kook.ChannelPermission)">
+            <summary>
+                Requires that the bot account to have a specific <see cref="T:Kook.ChannelPermission"/>.
+            </summary>
+            <param name="permission">
+                The <see cref="T:Kook.ChannelPermission"/> that the bot must have. Multiple permissions can be
+                specified by ORing the permissions together.
+            </param>
+        </member>
+        <member name="M:Kook.Commands.RequireBotPermissionAttribute.CheckPermissionsAsync(Kook.Commands.ICommandContext,Kook.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.ContextType">
+            <summary>
+                Defines the type of command context (i.e. where the command is being executed).
+            </summary>
+        </member>
+        <member name="F:Kook.Commands.ContextType.Guild">
+            <summary>
+                Specifies the command to be executed within a guild.
+            </summary>
+        </member>
+        <member name="F:Kook.Commands.ContextType.DM">
+            <summary>
+                Specifies the command to be executed within a DM.
+            </summary>
+        </member>
+        <member name="T:Kook.Commands.RequireContextAttribute">
+            <summary>
+                Requires the command to be invoked in a specified context (e.g. in guild, DM).
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.RequireContextAttribute.Contexts">
+            <summary>
+                Gets the context required to execute the command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.RequireContextAttribute.ErrorMessage">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Commands.RequireContextAttribute.#ctor(Kook.Commands.ContextType)">
+            <summary> Requires the command to be invoked in the specified context. </summary>
+            <param name="contexts">The type of context the command can be invoked in. Multiple contexts can be specified by ORing the contexts together.</param>
+            <example>
+            <code language="cs">
+                [Command("secret")]
+                [RequireContext(ContextType.DM | ContextType.Group)]
+                public Task PrivateOnlyAsync()
+                {
+                    return ReplyAsync("shh, this command is a secret");
+                }
+            </code>
+            </example>
+        </member>
+        <member name="M:Kook.Commands.RequireContextAttribute.CheckPermissionsAsync(Kook.Commands.ICommandContext,Kook.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.RequireRoleAttribute">
+            <summary>
+                Requires the user invoking the command to have a specified role.
+            </summary>
+            <remarks>
+                This precondition will restrict the access of the command or module to a user with the specified role.
+                If the precondition fails to be met, an erroneous <see cref="T:Kook.Commands.PreconditionResult"/> will be returned with the
+                message "Command can only be run by the specified user." For example, you can pass the guild manager role
+                to restrict the command to the guild managers to be able to use it.
+            </remarks>
+        </member>
+        <member name="P:Kook.Commands.RequireRoleAttribute.NotAGuildErrorMessage">
+            <summary>
+                Gets or sets the error message if the precondition
+                fails due to being run outside of a Guild channel.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.RequireRoleAttribute.#ctor(System.UInt32)">
+            <summary>
+                Requires that the user invoking the command to have a specific Role.
+            </summary>
+            <param name="roleId">Id of the role that the user must have.</param>
+        </member>
+        <member name="M:Kook.Commands.RequireRoleAttribute.#ctor(System.String)">
+            <summary>
+                Requires that the user invoking the command to have a specific Role.
+            </summary>
+            <param name="roleName">Name of the role that the user must have.</param>
+        </member>
+        <member name="M:Kook.Commands.RequireRoleAttribute.CheckPermissionsAsync(Kook.Commands.ICommandContext,Kook.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.RequireUserAttribute">
+            <summary>
+                Requires the command to be invoked by the specified user.
+            </summary>
+            <remarks>
+                This precondition will restrict the access of the command or module to a specified user.
+                If the precondition fails to be met, an erroneous <see cref="T:Kook.Commands.PreconditionResult"/> will be returned with the
+                message "Command can only be run by the specified user." For example, you can pass the owner of this bot
+                application to restrict the command to the bot owner to be able to use it.
+            </remarks>
+            <example>
+                The following example restricts the command to a set of sensitive commands that only the specified user
+                should be able to access.
+                <code language="cs">
+                [RequireUser(2810246202)]
+                [Group("admin")]
+                public class AdminModule : ModuleBase
+                {
+                    [Command("exit")]
+                    public async Task ExitAsync()
+                    {
+                        Environment.Exit(0);
+                    }
+                }
+                </code>
+            </example>
+        </member>
+        <member name="M:Kook.Commands.RequireUserAttribute.#ctor(System.UInt64)">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.RequireUserAttribute" /> attribute with the specified user identifier.
+            </summary>
+            <param name="userId"> The identifier of the user. </param>
+        </member>
+        <member name="P:Kook.Commands.RequireUserAttribute.ErrorMessage">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Commands.RequireUserAttribute.CheckPermissionsAsync(Kook.Commands.ICommandContext,Kook.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.RequireUserPermissionAttribute">
+            <summary>
+                Requires the user invoking the command to have a specified permission.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.RequireUserPermissionAttribute.GuildPermission">
+            <summary>
+                Gets the specified <see cref="T:Kook.GuildPermission" /> of the precondition.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.RequireUserPermissionAttribute.ChannelPermission">
+            <summary>
+                Gets the specified <see cref="T:Kook.ChannelPermission" /> of the precondition.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.RequireUserPermissionAttribute.ErrorMessage">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Commands.RequireUserPermissionAttribute.NotAGuildErrorMessage">
+            <summary>
+                Gets or sets the error message if the precondition
+                fails due to being run outside of a Guild channel.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.RequireUserPermissionAttribute.#ctor(Kook.GuildPermission)">
+            <summary>
+                Requires that the user invoking the command to have a specific <see cref="T:Kook.GuildPermission"/>.
+            </summary>
+            <remarks>
+                This precondition will always fail if the command is being invoked in a <see cref="T:Kook.IPrivateChannel"/>.
+            </remarks>
+            <param name="permission">
+                The <see cref="T:Kook.GuildPermission" /> that the user must have. Multiple permissions can be
+                specified by ORing the permissions together.
+            </param>
+        </member>
+        <member name="M:Kook.Commands.RequireUserPermissionAttribute.#ctor(Kook.ChannelPermission)">
+            <summary>
+                Requires that the user invoking the command to have a specific <see cref="T:Kook.ChannelPermission"/>.
+            </summary>
+            <param name="permission">
+                The <see cref="T:Kook.ChannelPermission"/> that the user must have. Multiple permissions can be
+                specified by ORing the permissions together.
+            </param>
+        </member>
+        <member name="M:Kook.Commands.RequireUserPermissionAttribute.CheckPermissionsAsync(Kook.Commands.ICommandContext,Kook.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.PriorityAttribute">
+            <summary>
+                Sets priority of commands.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.PriorityAttribute.Priority">
+            <summary>
+                Gets the priority which has been set for the command.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.PriorityAttribute.#ctor(System.Int32)">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.PriorityAttribute" /> attribute with the given priority.
+            </summary>
+        </member>
+        <member name="T:Kook.Commands.RemainderAttribute">
+            <summary>
+                Marks the input to not be parsed by the parser.
+            </summary>
+        </member>
+        <member name="T:Kook.Commands.RemarksAttribute">
+            <summary>
+                Attaches remarks to your commands.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.RemarksAttribute.Text">
+            <summary>
+                Gets the remarks of the command.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.RemarksAttribute.#ctor(System.String)">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.RemarksAttribute" /> attribute with the specified remarks.
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="T:Kook.Commands.SummaryAttribute">
+            <summary>
+                Attaches a summary to your command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.SummaryAttribute.Text">
+            <summary>
+                Gets the summary of the command.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.SummaryAttribute.#ctor(System.String)">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.SummaryAttribute" /> attribute with the specified summary.
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="T:Kook.Commands.Builders.CommandBuilder">
+            <summary>
+                Represents a command builder.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.CommandBuilder.Module">
+            <summary>
+                Gets the module builder that this command builder belongs to.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.CommandBuilder.Callback">
+            <summary>
+                Gets or sets the callback that is invoked when this command is executed.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.CommandBuilder.Name">
+            <summary>
+                Gets or sets the name of this command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.CommandBuilder.Summary">
+            <summary>
+                Gets or sets the summary of this command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.CommandBuilder.Remarks">
+            <summary>
+                Gets or sets the remarks of this command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.CommandBuilder.PrimaryAlias">
+            <summary>
+                Gets or sets the primary alias of this command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.CommandBuilder.RunMode">
+            <summary>
+                Gets or sets the run mode of this command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.CommandBuilder.Priority">
+            <summary>
+                Gets or sets the priority of this command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.CommandBuilder.IgnoreExtraArgs">
+            <summary>
+                Gets or sets whether the extra arguments should be ignored.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.CommandBuilder.Preconditions">
+            <summary>
+                Gets the preconditions of this command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.CommandBuilder.Parameters">
+            <summary>
+                Gets the parameters of this command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.CommandBuilder.Attributes">
+            <summary>
+                Gets the attributes of this command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.CommandBuilder.Aliases">
+            <summary>
+                Gets the aliases of this command.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.Builders.CommandBuilder.#ctor(Kook.Commands.Builders.ModuleBuilder)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Kook.Commands.Builders.CommandBuilder"/> class.
+            </summary>
+            <param name="module"> The module builder that this command builder belongs to. </param>
+        </member>
+        <member name="M:Kook.Commands.Builders.CommandBuilder.#ctor(Kook.Commands.Builders.ModuleBuilder,System.String,System.Func{Kook.Commands.ICommandContext,System.Object[],System.IServiceProvider,Kook.Commands.CommandInfo,System.Threading.Tasks.Task})">
+            <summary>
+                Initializes a new instance of the <see cref="T:Kook.Commands.Builders.CommandBuilder"/> class.
+            </summary>
+            <param name="module"> The module builder that this command builder belongs to. </param>
+            <param name="primaryAlias"> The primary alias of this command. </param>
+            <param name="callback"> The callback that is invoked when this command is executed. </param>
+        </member>
+        <member name="M:Kook.Commands.Builders.CommandBuilder.WithName(System.String)">
+            <summary>
+                Sets the name of this command.
+            </summary>
+            <param name="name"> The name of this command. </param>
+            <returns> This command builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.CommandBuilder.WithSummary(System.String)">
+            <summary>
+                Sets the summary of this command.
+            </summary>
+            <param name="summary"> The summary of this command. </param>
+            <returns> This command builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.CommandBuilder.WithRemarks(System.String)">
+            <summary>
+                 Sets the remarks of this command.
+            </summary>
+            <param name="remarks"> The remarks of this command. </param>
+            <returns> This command builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.CommandBuilder.WithRunMode(Kook.Commands.RunMode)">
+            <summary>
+                Sets the run mode of this command.
+            </summary>
+            <param name="runMode"> The run mode of this command. </param>
+            <returns> This command builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.CommandBuilder.WithPriority(System.Int32)">
+            <summary>
+                 Sets the priority of this command.
+            </summary>
+            <param name="priority"> The priority of this command. </param>
+            <returns> This command builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.CommandBuilder.AddAliases(System.String[])">
+            <summary>
+                Adds aliases to this command.
+            </summary>
+            <param name="aliases"> An array containing the aliases to add. </param>
+            <returns> This command builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.CommandBuilder.AddAttributes(System.Attribute[])">
+            <summary>
+                Adds attributes to this command.
+            </summary>
+            <param name="attributes"> An array containing the attributes to add. </param>
+            <returns> This command builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.CommandBuilder.AddPrecondition(Kook.Commands.PreconditionAttribute)">
+            <summary>
+                Adds a precondition to this command.
+            </summary>
+            <param name="precondition"> The precondition to add. </param>
+            <returns> This command builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.CommandBuilder.AddParameter``1(System.String,System.Action{Kook.Commands.Builders.ParameterBuilder})">
+            <summary>
+                Adds a parameter to this command.
+            </summary>
+            <param name="name"> The name of the parameter. </param>
+            <param name="createFunc"> An action delegate that is invoked to create the parameter. </param>
+            <typeparam name="T"> The type of the parameter. </typeparam>
+            <returns> This command builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.CommandBuilder.AddParameter(System.String,System.Type,System.Action{Kook.Commands.Builders.ParameterBuilder})">
+            <summary>
+                Adds a parameter to this command.
+            </summary>
+            <param name="name"> The name of the parameter. </param>
+            <param name="type"> The type of the parameter. </param>
+            <param name="createFunc"> An action delegate that is invoked to create the parameter. </param>
+            <returns> This command builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.CommandBuilder.AddParameter(System.Action{Kook.Commands.Builders.ParameterBuilder})">
+            <summary>
+                Adds a parameter to this command.
+            </summary>
+            <param name="createFunc"> An action delegate that is invoked to create the parameter. </param>
+            <returns> This command builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.CommandBuilder.Build(Kook.Commands.ModuleInfo,Kook.Commands.CommandService)">
+            <summary>
+                Builds the command.
+            </summary>
+            <param name="info"> The module info. </param>
+            <param name="service"> The command service. </param>
+            <returns> The command info. </returns>
+            <exception cref="T:System.InvalidOperationException">Only the last parameter in a command may have the Remainder or Multiple flag.</exception>
+        </member>
+        <member name="T:Kook.Commands.Builders.ModuleBuilder">
+            <summary>
+                Represents a module builder.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ModuleBuilder.Service">
+            <summary>
+                Gets the command service that this module builder belongs to.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ModuleBuilder.Parent">
+            <summary>
+                Gets the parent module builder that this module builder belongs to.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ModuleBuilder.Name">
+            <summary>
+                Gets or sets the name of this module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ModuleBuilder.Summary">
+            <summary>
+                Gets or sets the summary of this module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ModuleBuilder.Remarks">
+            <summary>
+                Gets or sets the remarks of this module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ModuleBuilder.Group">
+            <summary>
+                Gets or sets the group of this module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ModuleBuilder.Commands">
+            <summary>
+                Gets a read-only list of commands that this module builder contains.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ModuleBuilder.Modules">
+            <summary>
+                Gets a read-only list of submodules that this module builder contains.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ModuleBuilder.Preconditions">
+            <summary>
+                Gets a read-only list of preconditions that this module builder contains.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ModuleBuilder.Attributes">
+            <summary>
+                Gets a read-only list of attributes that this module builder contains.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ModuleBuilder.Aliases">
+            <summary>
+                Gets a read-only list of aliases that this module builder contains.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.#ctor(Kook.Commands.CommandService,Kook.Commands.Builders.ModuleBuilder)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Kook.Commands.Builders.ModuleBuilder"/> class.
+            </summary>
+            <param name="service"> The command service that this module builder belongs to. </param>
+            <param name="parent"> The parent module builder that this module builder belongs to. </param>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.#ctor(Kook.Commands.CommandService,Kook.Commands.Builders.ModuleBuilder,System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Kook.Commands.Builders.ModuleBuilder"/> class.
+            </summary>
+            <param name="service"> The command service that this module builder belongs to. </param>
+            <param name="parent"> The parent module builder that this module builder belongs to. </param>
+            <param name="primaryAlias"> The primary alias of this module. </param>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.WithName(System.String)">
+            <summary>
+                Sets the name of this module.
+            </summary>
+            <param name="name"> The name of this module. </param>
+            <returns> This module builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.WithSummary(System.String)">
+            <summary>
+                Sets the summary of this module.
+            </summary>
+            <param name="summary"> The summary of this module. </param>
+            <returns> This module builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.WithRemarks(System.String)">
+            <summary>
+                Sets the remarks of this module.
+            </summary>
+            <param name="remarks"> The remarks of this module. </param>
+            <returns> This module builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.AddAliases(System.String[])">
+            <summary>
+                Adds aliases to this module.
+            </summary>
+            <param name="aliases"> An array of aliases to add to this module. </param>
+            <returns> This module builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.AddAttributes(System.Attribute[])">
+            <summary>
+                Adds a precondition to this module.
+            </summary>
+            <param name="attributes"> An array of attributes to add to this module. </param>
+            <returns> This module builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.AddPrecondition(Kook.Commands.PreconditionAttribute)">
+            <summary>
+                Adds a precondition to this module.
+            </summary>
+            <param name="precondition"> The precondition to add to this module. </param>
+            <returns> This module builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.AddCommand(System.String,System.Func{Kook.Commands.ICommandContext,System.Object[],System.IServiceProvider,Kook.Commands.CommandInfo,System.Threading.Tasks.Task},System.Action{Kook.Commands.Builders.CommandBuilder})">
+            <summary>
+                Adds a command to this module.
+            </summary>
+            <param name="primaryAlias"> The primary alias of this command. </param>
+            <param name="callback"> The callback of this command. </param>
+            <param name="createFunc"> The function delegate that creates this command. </param>
+            <returns> This module builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.AddCommand(System.Action{Kook.Commands.Builders.CommandBuilder})">
+            <summary>
+                Adds a command to this module.
+            </summary>
+            <param name="createFunc"> The function delegate that creates this command. </param>
+            <returns> This module builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.AddModule(System.String,System.Action{Kook.Commands.Builders.ModuleBuilder})">
+            <summary>
+                Adds a module to this module.
+            </summary>
+            <param name="primaryAlias"> The primary alias of this module. </param>
+            <param name="createFunc"> The function delegate that creates this module. </param>
+            <returns> This module builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.AddModule(System.Action{Kook.Commands.Builders.ModuleBuilder})">
+            <summary>
+                Adds a module to this module.
+            </summary>
+            <param name="createFunc"> The function delegate that creates this module. </param>
+            <returns> This module builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.BuildImpl(Kook.Commands.CommandService,System.IServiceProvider,Kook.Commands.ModuleInfo)">
+            <summary>
+                Builds this module builder into a module.
+            </summary>
+            <param name="service"> The command service that this module builder belongs to. </param>
+            <param name="services"> The service provider that this module builder belongs to. </param>
+            <param name="parent"> The parent module that this module builder belongs to. </param>
+            <returns> The built module. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.Build(Kook.Commands.CommandService,System.IServiceProvider)">
+            <summary>
+                Builds this module builder into a module.
+            </summary>
+            <param name="service"> The command service that this module builder belongs to. </param>
+            <param name="services"> The service provider that this module builder belongs to. </param>
+            <returns> The built module. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ModuleBuilder.Build(Kook.Commands.CommandService,System.IServiceProvider,Kook.Commands.ModuleInfo)">
+            <summary>
+                Builds this module builder into a module.
+            </summary>
+            <param name="service"> The command service that this module builder belongs to. </param>
+            <param name="services"> The service provider that this module builder belongs to. </param>
+            <param name="parent"> The parent module that this module builder belongs to. </param>
+            <returns> The built module. </returns>
+        </member>
+        <member name="T:Kook.Commands.Builders.ParameterBuilder">
+            <summary>
+                Represents a parameter builder.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ParameterBuilder.Command">
+            <summary>
+                Gets the command builder that this parameter builder belongs to.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ParameterBuilder.Name">
+            <summary>
+                Gets the name of this parameter.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ParameterBuilder.ParameterType">
+            <summary>
+                Gets the type of this parameter.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ParameterBuilder.TypeReader">
+            <summary>
+                Gets the type reader of this parameter.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ParameterBuilder.IsOptional">
+            <summary>
+                Gets or sets a value that indicates whether this parameter is an optional parameter or not.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ParameterBuilder.IsRemainder">
+            <summary>
+                Gets or sets a value that indicates whether this parameter is a remainder parameter or not.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ParameterBuilder.IsMultiple">
+            <summary>
+                Gets or sets a value that indicates whether this parameter is a multiple parameter or not.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ParameterBuilder.DefaultValue">
+            <summary>
+                Gets or sets the default value of this parameter.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ParameterBuilder.Summary">
+            <summary>
+                Gets or sets the summary of this parameter.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ParameterBuilder.Preconditions">
+            <summary>
+                Gets a read-only collection containing the preconditions of this parameter.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.Builders.ParameterBuilder.Attributes">
+            <summary>
+                Gets a read-only collection containing the attributes of this parameter.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.Builders.ParameterBuilder.#ctor(Kook.Commands.Builders.CommandBuilder)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Kook.Commands.Builders.ParameterBuilder"/> class.
+            </summary>
+            <param name="command"> The command builder that this parameter builder belongs to. </param>
+        </member>
+        <member name="M:Kook.Commands.Builders.ParameterBuilder.#ctor(Kook.Commands.Builders.CommandBuilder,System.String,System.Type)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Kook.Commands.Builders.ParameterBuilder"/> class.
+            </summary>
+            <param name="command"> The command builder that this parameter builder belongs to. </param>
+            <param name="name"> The name of this parameter. </param>
+            <param name="type"> The type of this parameter. </param>
+        </member>
+        <member name="M:Kook.Commands.Builders.ParameterBuilder.SetType(System.Type)">
+            <summary>
+                Sets the type of this parameter.
+            </summary>
+            <param name="type"> The type of this parameter. </param>
+        </member>
+        <member name="M:Kook.Commands.Builders.ParameterBuilder.GetReader(System.Type)">
+            <summary>
+                Gets the type reader of this parameter.
+            </summary>
+            <param name="type"> The type of this parameter. </param>
+            <returns> The type reader of this parameter. </returns>
+            <exception cref="T:System.InvalidOperationException"> The type for the command must be a class with a public parameterless constructor to use as a NamedArgumentType. </exception>
+        </member>
+        <member name="M:Kook.Commands.Builders.ParameterBuilder.WithSummary(System.String)">
+            <summary>
+                Sets the summary of this parameter.
+            </summary>
+            <param name="summary"> The summary of this parameter. </param>
+            <returns> This parameter builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ParameterBuilder.WithDefault(System.Object)">
+            <summary>
+                Sets the default value of this parameter.
+            </summary>
+            <param name="defaultValue"> The default value of this parameter. </param>
+            <returns> This parameter builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ParameterBuilder.WithIsOptional(System.Boolean)">
+            <summary>
+                Sets whether this parameter is an optional parameter or not.
+            </summary>
+            <param name="isOptional"> Whether this parameter is an optional parameter or not. </param>
+            <returns> This parameter builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ParameterBuilder.WithIsRemainder(System.Boolean)">
+            <summary>
+                Sets whether this parameter is a remainder parameter or not.
+            </summary>
+            <param name="isRemainder"> Whether this parameter is a remainder parameter or not. </param>
+            <returns> This parameter builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ParameterBuilder.WithIsMultiple(System.Boolean)">
+            <summary>
+                Sets whether this parameter is a multiple parameter or not.
+            </summary>
+            <param name="isMultiple"> Whether this parameter is a multiple parameter or not. </param>
+            <returns> This parameter builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ParameterBuilder.AddAttributes(System.Attribute[])">
+            <summary>
+                Adds attributes to this parameter.
+            </summary>
+            <param name="attributes"> An array containing the attributes to add. </param>
+            <returns> This parameter builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ParameterBuilder.AddPrecondition(Kook.Commands.ParameterPreconditionAttribute)">
+            <summary>
+                Adds a precondition to this parameter.
+            </summary>
+            <param name="precondition"> The precondition to add. </param>
+            <returns> This parameter builder. </returns>
+        </member>
+        <member name="M:Kook.Commands.Builders.ParameterBuilder.Build(Kook.Commands.CommandInfo)">
+            <summary>
+                Builds this parameter builder.
+            </summary>
+            <param name="info"> The command info that this parameter belongs to. </param>
+            <returns> The built parameter info. </returns>
+            <exception cref="T:System.InvalidOperationException"> No type reader was found for this parameter, which must be specified. </exception>
+        </member>
+        <member name="T:Kook.Commands.CommandContext">
+            <summary> The context of a command which may contain the client, user, guild, channel, and message. </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandContext.Client">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.CommandContext.Guild">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.CommandContext.Channel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.CommandContext.User">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.CommandContext.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.CommandContext.IsPrivate">
+            <summary> Indicates whether the channel that the command is executed in is a private channel. </summary>
+        </member>
+        <member name="M:Kook.Commands.CommandContext.#ctor(Kook.IKookClient,Kook.IUserMessage)">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.CommandContext" /> class with the provided client and message.
+            </summary>
+            <param name="client">The underlying client.</param>
+            <param name="msg">The underlying message.</param>
+        </member>
+        <member name="T:Kook.Commands.CommandError">
+            <summary> Defines the type of error a command can throw. </summary>
+        </member>
+        <member name="F:Kook.Commands.CommandError.UnknownCommand">
+            <summary>
+            Thrown when the command is unknown.
+            </summary>
+        </member>
+        <member name="F:Kook.Commands.CommandError.ParseFailed">
+            <summary>
+            Thrown when the command fails to be parsed.
+            </summary>
+        </member>
+        <member name="F:Kook.Commands.CommandError.BadArgCount">
+            <summary>
+            Thrown when the input text has too few or too many arguments.
+            </summary>
+        </member>
+        <member name="F:Kook.Commands.CommandError.ObjectNotFound">
+            <summary>
+            Thrown when the object cannot be found by the <see cref="T:Kook.Commands.TypeReader"/>.
+            </summary>
+        </member>
+        <member name="F:Kook.Commands.CommandError.MultipleMatches">
+            <summary>
+            Thrown when more than one object is matched by <see cref="T:Kook.Commands.TypeReader"/>.
+            </summary>
+        </member>
+        <member name="F:Kook.Commands.CommandError.UnmetPrecondition">
+            <summary>
+            Thrown when the command fails to meet a <see cref="T:Kook.Commands.PreconditionAttribute"/>'s conditions.
+            </summary>
+        </member>
+        <member name="F:Kook.Commands.CommandError.Exception">
+            <summary>
+            Thrown when an exception occurs mid-command execution.
+            </summary>
+        </member>
+        <member name="F:Kook.Commands.CommandError.Unsuccessful">
+            <summary>
+            Thrown when the command is not successfully executed on runtime.
+            </summary>
+        </member>
+        <member name="T:Kook.Commands.CommandException">
+            <summary>
+                The exception that is thrown if another exception occurs during a command execution.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandException.Command">
+            <summary> Gets the command that caused the exception. </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandException.Context">
+            <summary> Gets the command context of the exception. </summary>
+        </member>
+        <member name="M:Kook.Commands.CommandException.#ctor(Kook.Commands.CommandInfo,Kook.Commands.ICommandContext,System.Exception)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Kook.Commands.CommandException" /> class using a
+                <paramref name="command"/> information, a <paramref name="command"/> context, and the exception that
+                interrupted the execution.
+            </summary>
+            <param name="command">The command information.</param>
+            <param name="context">The context of the command.</param>
+            <param name="ex">The exception that interrupted the command execution.</param>
+        </member>
+        <member name="T:Kook.Commands.CommandMatch">
+            <summary>
+                Represents a matched command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandMatch.Command">
+            <summary> The command that matches the search result. </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandMatch.Alias">
+            <summary> The alias of the command. </summary>
+        </member>
+        <member name="M:Kook.Commands.CommandMatch.#ctor(Kook.Commands.CommandInfo,System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Kook.Commands.CommandMatch"/> struct.
+            </summary>
+            <param name="command"> The command that matches the search result. </param>
+            <param name="alias"> The alias of the command. </param>
+        </member>
+        <member name="M:Kook.Commands.CommandMatch.CheckPreconditionsAsync(Kook.Commands.ICommandContext,System.IServiceProvider)">
+            <summary>
+                Checks the preconditions of this command.
+            </summary>
+            <param name="context"> The context of the command. </param>
+            <param name="services"> The services to use. </param>
+            <returns> The result of the precondition check. </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandMatch.ParseAsync(Kook.Commands.ICommandContext,Kook.Commands.SearchResult,Kook.Commands.PreconditionResult,System.IServiceProvider)">
+            <summary>
+                Parses this command.
+            </summary>
+            <param name="context"> The context of the command. </param>
+            <param name="searchResult"> The search result of the command. </param>
+            <param name="preconditionResult"> The result of the precondition check. </param>
+            <param name="services"> The services to use. </param>
+            <returns> The result of the parse. </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandMatch.ExecuteAsync(Kook.Commands.ICommandContext,System.Collections.Generic.IEnumerable{System.Object},System.Collections.Generic.IEnumerable{System.Object},System.IServiceProvider)">
+            <summary>
+                Executes this command.
+            </summary>
+            <param name="context"> The context of the command. </param>
+            <param name="argList"> The arguments of the command. </param>
+            <param name="paramList"> The parameters of the command. </param>
+            <param name="services"> The services to use. </param>
+            <returns> The result of the execution. </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandMatch.ExecuteAsync(Kook.Commands.ICommandContext,Kook.Commands.ParseResult,System.IServiceProvider)">
+            <summary>
+                Executes this command.
+            </summary>
+            <param name="context"> The context of the command. </param>
+            <param name="parseResult"> The result of the parse. </param>
+            <param name="services"> The services to use. </param>
+            <returns> The result of the execution. </returns>
+        </member>
+        <member name="T:Kook.Commands.CommandService">
+            <summary>
+                Provides a framework for building Kook commands.
+            </summary>
+            <remarks>
+                <para>
+                    The service provides a framework for building Kook commands both dynamically via runtime builders or
+                    statically via compile-time modules. To create a command module at compile-time, see
+                    <see cref="T:Kook.Commands.ModuleBase" /> (most common); otherwise, see <see cref="T:Kook.Commands.Builders.ModuleBuilder" />.
+                </para>
+                <para>
+                    This service also provides several events for monitoring command usages; such as
+                    <see cref="E:Kook.Commands.CommandService.Log" /> for any command-related log events, and
+                    <see cref="E:Kook.Commands.CommandService.CommandExecuted" /> for information about commands that have
+                    been successfully executed.
+                </para>
+            </remarks>
+        </member>
+        <member name="E:Kook.Commands.CommandService.Log">
+            <summary>
+                Occurs when a command-related information is received.
+            </summary>
+        </member>
+        <member name="E:Kook.Commands.CommandService.CommandExecuted">
+            <summary>
+                Occurs when a command is executed.
+            </summary>
+            <remarks>
+                This event is fired when a command has been executed, successfully or not. When a command fails to
+                execute during parsing or precondition stage, the CommandInfo may not be returned.
+            </remarks>
+        </member>
+        <member name="P:Kook.Commands.CommandService.Modules">
+            <summary>
+                Represents all modules loaded within <see cref="T:Kook.Commands.CommandService"/>.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandService.Commands">
+            <summary>
+                Represents all commands loaded within <see cref="T:Kook.Commands.CommandService"/>.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandService.TypeReaders">
+            <summary>
+                Represents all <see cref="T:Kook.Commands.TypeReader" /> loaded within <see cref="T:Kook.Commands.CommandService"/>.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.CommandService.#ctor">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.CommandService"/> class.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.CommandService.#ctor(Kook.Commands.CommandServiceConfig)">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.CommandService"/> class with the provided configuration.
+            </summary>
+            <param name="config">The configuration class.</param>
+            <exception cref="T:System.InvalidOperationException">
+            The <see cref="T:Kook.Commands.RunMode"/> cannot be set to <see cref="F:Kook.Commands.RunMode.Default"/>.
+            </exception>
+        </member>
+        <member name="M:Kook.Commands.CommandService.CreateModuleAsync(System.String,System.Action{Kook.Commands.Builders.ModuleBuilder})">
+            <summary>
+                Creates a new module builder.
+            </summary>
+            <param name="primaryAlias"> The primary alias for the module. </param>
+            <param name="buildFunc"> The action delegate to build the module. </param>
+            <returns> A task that represents the asynchronous operation for creating the module. </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandService.AddModuleAsync``1(System.IServiceProvider)">
+            <summary>
+                Add a command module from a <see cref="T:System.Type" />.
+            </summary>
+            <example>
+                <para>The following example registers the module <c>MyModule</c> to <c>commandService</c>.</para>
+                <code language="cs">
+                await commandService.AddModuleAsync&lt;MyModule&gt;(serviceProvider);
+                </code>
+            </example>
+            <typeparam name="T">The type of module.</typeparam>
+            <param name="services">The <see cref="T:System.IServiceProvider"/> for your dependency injection solution if using one; otherwise, pass <c>null</c>.</param>
+            <exception cref="T:System.ArgumentException">This module has already been added.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            The <see cref="T:Kook.Commands.ModuleInfo"/> fails to be built; an invalid type may have been provided.
+            </exception>
+            <returns>
+                A task that represents the asynchronous operation for adding the module. The task result contains the
+                built module.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandService.AddModuleAsync(System.Type,System.IServiceProvider)">
+            <summary>
+                Adds a command module from a <see cref="T:System.Type" />.
+            </summary>
+            <param name="type">The type of module.</param>
+            <param name="services">The <see cref="T:System.IServiceProvider" /> for your dependency injection solution if using one; otherwise, pass <c>null</c> .</param>
+            <exception cref="T:System.ArgumentException">This module has already been added.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            The <see cref="T:Kook.Commands.ModuleInfo"/> fails to be built; an invalid type may have been provided.
+            </exception>
+            <returns>
+                A task that represents the asynchronous operation for adding the module. The task result contains the
+                built module.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandService.AddModulesAsync(System.Reflection.Assembly,System.IServiceProvider)">
+            <summary>
+                Add command modules from an <see cref="T:System.Reflection.Assembly"/>.
+            </summary>
+            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> containing command modules.</param>
+            <param name="services">The <see cref="T:System.IServiceProvider"/> for your dependency injection solution if using one; otherwise, pass <c>null</c>.</param>
+            <returns>
+                A task that represents the asynchronous operation for adding the command modules. The task result
+                contains an enumerable collection of modules added.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandService.RemoveModuleAsync(Kook.Commands.ModuleInfo)">
+            <summary>
+                Removes the command module.
+            </summary>
+            <param name="module">The <see cref="T:Kook.Commands.ModuleInfo" /> to be removed from the service.</param>
+            <returns>
+                A task that represents the asynchronous removal operation. The task result contains a value that
+                indicates whether the <paramref name="module"/> is successfully removed.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandService.RemoveModuleAsync``1">
+            <summary>
+                Removes the command module.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type"/> of the module.</typeparam>
+            <returns>
+                A task that represents the asynchronous removal operation. The task result contains a value that
+                indicates whether the module is successfully removed.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandService.RemoveModuleAsync(System.Type)">
+            <summary>
+                Removes the command module.
+            </summary>
+            <param name="type">The <see cref="T:System.Type"/> of the module.</param>
+            <returns>
+                A task that represents the asynchronous removal operation. The task result contains a value that
+                indicates whether the module is successfully removed.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandService.AddTypeReader``1(Kook.Commands.TypeReader)">
+            <summary>
+                Adds a custom <see cref="T:Kook.Commands.TypeReader" /> to this <see cref="T:Kook.Commands.CommandService" /> for the supplied object
+                type.
+                If <typeparamref name="T" /> is a <see cref="T:System.ValueType" />, a nullable <see cref="T:Kook.Commands.TypeReader" /> will
+                also be added.
+                If a default <see cref="T:Kook.Commands.TypeReader" /> exists for <typeparamref name="T" />, a warning will be logged
+                and the default <see cref="T:Kook.Commands.TypeReader" /> will be replaced.
+            </summary>
+            <typeparam name="T">The object type to be read by the <see cref="T:Kook.Commands.TypeReader"/>.</typeparam>
+            <param name="reader">An instance of the <see cref="T:Kook.Commands.TypeReader" /> to be added.</param>
+        </member>
+        <member name="M:Kook.Commands.CommandService.AddTypeReader(System.Type,Kook.Commands.TypeReader)">
+            <summary>
+                Adds a custom <see cref="T:Kook.Commands.TypeReader" /> to this <see cref="T:Kook.Commands.CommandService" /> for the supplied object
+                type.
+                If <paramref name="type" /> is a <see cref="T:System.ValueType" />, a nullable <see cref="T:Kook.Commands.TypeReader" /> for the
+                value type will also be added.
+                If a default <see cref="T:Kook.Commands.TypeReader" /> exists for <paramref name="type" />, a warning will be logged and
+                the default <see cref="T:Kook.Commands.TypeReader" /> will be replaced.
+            </summary>
+            <param name="type">A <see cref="T:System.Type" /> instance for the type to be read.</param>
+            <param name="reader">An instance of the <see cref="T:Kook.Commands.TypeReader" /> to be added.</param>
+        </member>
+        <member name="M:Kook.Commands.CommandService.AddTypeReader``1(Kook.Commands.TypeReader,System.Boolean)">
+            <summary>
+                Adds a custom <see cref="T:Kook.Commands.TypeReader" /> to this <see cref="T:Kook.Commands.CommandService" /> for the supplied object
+                type.
+                If <typeparamref name="T" /> is a <see cref="T:System.ValueType" />, a nullable <see cref="T:Kook.Commands.TypeReader" /> will
+                also be added.
+            </summary>
+            <typeparam name="T">The object type to be read by the <see cref="T:Kook.Commands.TypeReader"/>.</typeparam>
+            <param name="reader">An instance of the <see cref="T:Kook.Commands.TypeReader" /> to be added.</param>
+            <param name="replaceDefault">
+                Defines whether the <see cref="T:Kook.Commands.TypeReader"/> should replace the default one for
+                <see cref="T:System.Type" /> if it exists.
+            </param>
+        </member>
+        <member name="M:Kook.Commands.CommandService.AddTypeReader(System.Type,Kook.Commands.TypeReader,System.Boolean)">
+            <summary>
+                Adds a custom <see cref="T:Kook.Commands.TypeReader" /> to this <see cref="T:Kook.Commands.CommandService" /> for the supplied object
+                type.
+                If <paramref name="type" /> is a <see cref="T:System.ValueType" />, a nullable <see cref="T:Kook.Commands.TypeReader" /> for the
+                value type will also be added.
+            </summary>
+            <param name="type">A <see cref="T:System.Type" /> instance for the type to be read.</param>
+            <param name="reader">An instance of the <see cref="T:Kook.Commands.TypeReader" /> to be added.</param>
+            <param name="replaceDefault">
+                Defines whether the <see cref="T:Kook.Commands.TypeReader"/> should replace the default one for <see cref="T:System.Type" /> if
+                it exists.
+            </param>
+        </member>
+        <member name="M:Kook.Commands.CommandService.TryRemoveTypeReader(System.Type,System.Boolean,System.Collections.Generic.IDictionary{System.Type,Kook.Commands.TypeReader}@)">
+            <summary>
+                Removes a type reader from the list of type readers.
+            </summary>
+            <remarks>
+                Removing a <see cref="T:Kook.Commands.TypeReader"/> from the <see cref="T:Kook.Commands.CommandService"/> will not dereference the <see cref="T:Kook.Commands.TypeReader"/> from the loaded module/command instances.
+                You need to reload the modules for the changes to take effect.
+            </remarks>
+            <param name="type">The type to remove the readers from.</param>
+            <param name="isDefaultTypeReader"><c>true</c> if the default readers for <paramref name="type"/> should be removed; otherwise <c>false</c>.</param>
+            <param name="readers">The removed collection of type readers.</param>
+            <returns><c>true</c> if the remove operation was successful; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:Kook.Commands.CommandService.Search(Kook.Commands.ICommandContext,System.Int32)">
+            <summary>
+                Searches for the command.
+            </summary>
+            <param name="context">The context of the command.</param>
+            <param name="argPos">The position of which the command starts at.</param>
+            <returns>The result containing the matching commands.</returns>
+        </member>
+        <member name="M:Kook.Commands.CommandService.Search(Kook.Commands.ICommandContext,System.String)">
+            <summary>
+                Searches for the command.
+            </summary>
+            <param name="context">The context of the command.</param>
+            <param name="input">The command string.</param>
+            <returns>The result containing the matching commands.</returns>
+        </member>
+        <member name="M:Kook.Commands.CommandService.Search(System.String)">
+            <summary>
+                Searches for the command.
+            </summary>
+            <param name="input"> The command string. </param>
+            <returns> The result containing the matching commands. </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandService.ExecuteAsync(Kook.Commands.ICommandContext,System.Int32,System.IServiceProvider,Kook.Commands.MultiMatchHandling)">
+            <summary>
+                Executes the command.
+            </summary>
+            <param name="context">The context of the command.</param>
+            <param name="argPos">The position of which the command starts at.</param>
+            <param name="services">The service to be used in the command's dependency injection.</param>
+            <param name="multiMatchHandling">The handling mode when multiple command matches are found.</param>
+            <returns>
+                A task that represents the asynchronous execution operation. The task result contains the result of the
+                command execution.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandService.ExecuteAsync(Kook.Commands.ICommandContext,System.String,System.IServiceProvider,Kook.Commands.MultiMatchHandling)">
+            <summary>
+                Executes the command.
+            </summary>
+            <param name="context">The context of the command.</param>
+            <param name="input">The command string.</param>
+            <param name="services">The service to be used in the command's dependency injection.</param>
+            <param name="multiMatchHandling">The handling mode when multiple command matches are found.</param>
+            <returns>
+                A task that represents the asynchronous execution operation. The task result contains the result of the
+                command execution.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandService.ValidateAndGetBestMatch(Kook.Commands.SearchResult,Kook.Commands.ICommandContext,System.IServiceProvider,Kook.Commands.MultiMatchHandling)">
+            <summary>
+            Validates and gets the best <see cref="T:Kook.Commands.CommandMatch"/> from a specified <see cref="T:Kook.Commands.SearchResult"/>
+            </summary>
+            <param name="matches">The SearchResult.</param>
+            <param name="context">The context of the command.</param>
+            <param name="provider">The service provider to be used on the command's dependency injection.</param>
+            <param name="multiMatchHandling">The handling mode when multiple command matches are found.</param>
+            <returns>A task that represents the asynchronous validation operation. The task result contains the result of the
+                command validation as a <see cref="T:Kook.Commands.MatchResult"/> or a <see cref="T:Kook.Commands.SearchResult"/> if no matches were found.</returns>
+        </member>
+        <member name="M:Kook.Commands.CommandService.Dispose(System.Boolean)">
+            <inheritdoc cref="M:System.IDisposable.Dispose" />
+        </member>
+        <member name="M:Kook.Commands.CommandService.System#IDisposable#Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.CommandServiceConfig">
+            <summary>
+                Represents a configuration class for <see cref="T:Kook.Commands.CommandService"/>.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandServiceConfig.DefaultRunMode">
+            <summary>
+                Gets or sets the default <see cref="T:Kook.Commands.RunMode" /> commands should have, if one is not specified on the
+                Command attribute or builder.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandServiceConfig.SeparatorChar">
+            <summary>
+                Gets or sets the <see cref="T:System.Char"/> that separates an argument with another.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandServiceConfig.CaseSensitiveCommands">
+            <summary>
+                Gets or sets whether commands should be case-sensitive.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandServiceConfig.LogLevel">
+            <summary>
+                Gets or sets the minimum log level severity that will be sent to the <see cref="E:Kook.Commands.CommandService.Log"/> event.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandServiceConfig.ThrowOnError">
+            <summary>
+                Gets or sets whether <see cref="F:Kook.Commands.RunMode.Sync"/> commands should push exceptions up to the caller.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandServiceConfig.QuotationMarkAliasMap">
+            <summary>
+            Collection of aliases for matching pairs of string delimiters.
+            The dictionary stores the opening delimiter as a key, and the matching closing delimiter as the value.
+            If no value is supplied <see cref="P:Kook.Commands.QuotationAliasUtils.GetDefaultAliasMap"/> will be used, which contains
+            many regional equivalents.
+            Only values that are specified in this map will be used as string delimiters, so if " is removed then
+            it won't be used.
+            If this map is set to null or empty, the default delimiter of " will be used.
+            </summary>
+            <example>
+            <code language="cs">
+            QuotationMarkAliasMap = new Dictionary&lt;char, char&gt;()
+            {
+                {'\"', '\"' },
+                {'“', '”' },
+                {'「', '」' },
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:Kook.Commands.CommandServiceConfig.IgnoreExtraArgs">
+            <summary>
+                Gets or sets a value that indicates whether extra parameters should be ignored.
+            </summary>
+        </member>
+        <member name="T:Kook.Commands.CommandServiceExtensions">
+            <summary>
+                Provides extension methods for the <see cref="T:Kook.Commands.CommandService"/> class.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.CommandServiceExtensions.GetExecutableCommandsAsync(System.Collections.Generic.ICollection{Kook.Commands.CommandInfo},Kook.Commands.ICommandContext,System.IServiceProvider)">
+            <summary>
+                Returns commands that can be executed under the current context.
+            </summary>
+            <param name="commands">The set of commands to be checked against.</param>
+            <param name="context">The current command context.</param>
+            <param name="provider">The service provider used for dependency injection upon precondition check.</param>
+            <returns>
+                A read-only collection of commands that can be executed under the current context.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandServiceExtensions.GetExecutableCommandsAsync(Kook.Commands.CommandService,Kook.Commands.ICommandContext,System.IServiceProvider)">
+            <summary>
+                Returns commands that can be executed under the current context.
+            </summary>
+            <param name="commandService">The desired command service class to check against.</param>
+            <param name="context">The current command context.</param>
+            <param name="provider">The service provider used for dependency injection upon precondition check.</param>
+            <returns>
+                A read-only collection of commands that can be executed under the current context.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandServiceExtensions.GetExecutableCommandsAsync(Kook.Commands.ModuleInfo,Kook.Commands.ICommandContext,System.IServiceProvider)">
+            <summary>
+                Returns commands that can be executed under the current context.
+            </summary>
+            <param name="module">The module to be checked against.</param>
+            <param name="context">The current command context.</param>
+            <param name="provider">The service provider used for dependency injection upon precondition check.</param>
+            <returns>
+                A read-only collection of commands that can be executed under the current context.
+            </returns>
+        </member>
+        <member name="T:Kook.Commands.IEnumerableExtensions">
+            <summary>
+                Provides extension methods for <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.IEnumerableExtensions.Permutate``3(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,``2})">
+            <summary>
+                Generates all possible combinations of elements from two collections and applies a specified function to each combination to produce a result.
+            </summary>
+            <typeparam name="TFirst">The type of elements in the first collection.</typeparam>
+            <typeparam name="TSecond">The type of elements in the second collection.</typeparam>
+            <typeparam name="TResult">The type of the results produced by the specified function.</typeparam>
+            <param name="set">The first collection of elements to use to generate the combinations.</param>
+            <param name="others">The second collection of elements to use to generate the combinations.</param>
+            <param name="func">The function to apply to each combination of elements to produce a result.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <typeparamref name="TResult"/> values generated by applying the specified function to each combination of elements.</returns>
+        </member>
+        <member name="T:Kook.Commands.MessageExtensions">
+            <summary>
+                Provides extension methods for <see cref="T:Kook.IUserMessage" /> that relates to commands.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.MessageExtensions.HasCharPrefix(Kook.IUserMessage,System.Char,System.Int32@)">
+            <summary>
+                Gets whether the message starts with the provided character.
+            </summary>
+            <param name="msg">The message to check against.</param>
+            <param name="c">The char prefix.</param>
+            <param name="argPos">References where the command starts.</param>
+            <returns>
+                <c>true</c> if the message begins with the char <paramref name="c"/>; otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.MessageExtensions.HasStringPrefix(Kook.IUserMessage,System.String,System.Int32@,System.StringComparison)">
+            <summary>
+                Gets whether the message starts with the provided string.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.MessageExtensions.HasMentionPrefix(Kook.IUserMessage,Kook.IUser,System.Int32@)">
+            <summary>
+                Gets whether the message starts with the user's mention string.
+            </summary>
+        </member>
+        <member name="T:Kook.Commands.IModuleBase">
+            <summary>
+                Represents a generic module base.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.IModuleBase.SetContext(Kook.Commands.ICommandContext)">
+            <summary>
+                Sets the context of this module base.
+            </summary>
+            <param name="context">The context to set.</param>
+        </member>
+        <member name="M:Kook.Commands.IModuleBase.BeforeExecuteAsync(Kook.Commands.CommandInfo)">
+            <summary>
+                Executed asynchronously before a command is run in this module base.
+            </summary>
+            <param name="command">The command thats about to run.</param>
+        </member>
+        <member name="M:Kook.Commands.IModuleBase.BeforeExecute(Kook.Commands.CommandInfo)">
+            <summary>
+                Executed before a command is run in this module base.
+            </summary>
+            <param name="command">The command that's about to run.</param>
+        </member>
+        <member name="M:Kook.Commands.IModuleBase.AfterExecute(Kook.Commands.CommandInfo)">
+            <summary>
+                Executed after a command is ran in this module base.
+            </summary>
+            <param name="command">The command that ran.</param>
+        </member>
+        <member name="M:Kook.Commands.IModuleBase.AfterExecuteAsync(Kook.Commands.CommandInfo)">
+            <summary>
+                Executed asynchronously after a command is run in this module base.
+            </summary>
+            <param name="command">The command that's about to run.</param>
+        </member>
+        <member name="M:Kook.Commands.IModuleBase.OnModuleBuilding(Kook.Commands.CommandService,Kook.Commands.Builders.ModuleBuilder)">
+            <summary>
+                Executed when this module is building.
+            </summary>
+            <param name="commandService">The command service that is building this module.</param>
+            <param name="builder">The builder constructing this module.</param>
+        </member>
+        <member name="T:Kook.Commands.CommandInfo">
+            <summary>
+                Provides the information of a command.
+            </summary>
+            <remarks>
+                This object contains the information of a command. This can include the module of the command, various
+                descriptions regarding the command, and its <see cref="P:Kook.Commands.CommandInfo.RunMode"/>.
+            </remarks>
+        </member>
+        <member name="P:Kook.Commands.CommandInfo.Module">
+            <summary>
+                Gets the module that the command belongs in.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandInfo.Name">
+            <summary>
+                Gets the name of the command. If none is set, the first alias is used.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandInfo.Summary">
+            <summary>
+                Gets the summary of the command.
+            </summary>
+            <remarks>
+                This field returns the summary of the command. <see cref="P:Kook.Commands.CommandInfo.Summary"/> and <see cref="P:Kook.Commands.CommandInfo.Remarks"/> can be
+                useful in help commands and various implementation that fetches details of the command for the user.
+            </remarks>
+        </member>
+        <member name="P:Kook.Commands.CommandInfo.Remarks">
+            <summary>
+                Gets the remarks of the command.
+            </summary>
+            <remarks>
+                This field returns the summary of the command. <see cref="P:Kook.Commands.CommandInfo.Summary"/> and <see cref="P:Kook.Commands.CommandInfo.Remarks"/> can be
+                useful in help commands and various implementation that fetches details of the command for the user.
+            </remarks>
+        </member>
+        <member name="P:Kook.Commands.CommandInfo.Priority">
+            <summary>
+                Gets the priority of the command. This is used when there are multiple overloads of the command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandInfo.HasVarArgs">
+            <summary>
+                Indicates whether the command accepts a <c>params</c> <see cref="T:System.Type"/>[] for its
+                parameter.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandInfo.IgnoreExtraArgs">
+            <summary>
+                Indicates whether extra arguments should be ignored for this command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandInfo.RunMode">
+            <summary>
+                Gets the <see cref="P:Kook.Commands.CommandInfo.RunMode" /> that is being used for the command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandInfo.Aliases">
+            <summary>
+                Gets a list of aliases defined by the <see cref="T:Kook.Commands.AliasAttribute" /> of the command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandInfo.Parameters">
+            <summary>
+                Gets a list of information about the parameters of the command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandInfo.Preconditions">
+            <summary>
+                Gets a list of preconditions defined by the <see cref="T:Kook.Commands.PreconditionAttribute" /> of the command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.CommandInfo.Attributes">
+            <summary>
+                Gets a list of attributes of the command.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.CommandInfo.CheckPreconditionsAsync(Kook.Commands.ICommandContext,System.IServiceProvider)">
+            <summary>
+                Checks the preconditions of the command.
+            </summary>
+            <param name="context"> The context of the command. </param>
+            <param name="services"> The services to be used for precondition checking. </param>
+            <returns> A <see cref="T:Kook.Commands.PreconditionResult" /> that indicates whether the precondition check was successful. </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandInfo.ParseAsync(Kook.Commands.ICommandContext,System.Int32,Kook.Commands.SearchResult,Kook.Commands.PreconditionResult,System.IServiceProvider)">
+            <summary>
+                Parses the arguments of the command.
+            </summary>
+            <param name="context"> The context of the command. </param>
+            <param name="startIndex"> The index to start parsing from. </param>
+            <param name="searchResult"> The search result of the command. </param>
+            <param name="preconditionResult"> The result of the precondition check. </param>
+            <param name="services"> The services to be used for parsing. </param>
+            <returns> A <see cref="T:Kook.Commands.ParseResult" /> that indicates whether the parsing was successful. </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandInfo.ExecuteAsync(Kook.Commands.ICommandContext,Kook.Commands.ParseResult,System.IServiceProvider)">
+            <summary>
+                Executes the command.
+            </summary>
+            <param name="context"> The context of the command. </param>
+            <param name="parseResult"> The result of the parsing. </param>
+            <param name="services"> The services to be used for execution. </param>
+            <returns> An <see cref="T:Kook.Commands.IResult"/> that indicates whether the execution was successful. </returns>
+        </member>
+        <member name="M:Kook.Commands.CommandInfo.ExecuteAsync(Kook.Commands.ICommandContext,System.Collections.Generic.IEnumerable{System.Object},System.Collections.Generic.IEnumerable{System.Object},System.IServiceProvider)">
+            <summary>
+                Executes the command.
+            </summary>
+            <param name="context"> The context of the command. </param>
+            <param name="argList"> The arguments of the command. </param>
+            <param name="paramList"> The parameters of the command. </param>
+            <param name="services"> The services to be used for execution. </param>
+            <returns> An <see cref="T:Kook.Commands.IResult"/> that indicates whether the execution was successful. </returns>
+        </member>
+        <member name="T:Kook.Commands.ModuleInfo">
+            <summary>
+                Provides the information of a module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ModuleInfo.Service">
+            <summary>
+                Gets the command service associated with this module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ModuleInfo.Name">
+            <summary>
+                Gets the name of this module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ModuleInfo.Summary">
+            <summary>
+                Gets the summary of this module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ModuleInfo.Remarks">
+            <summary>
+                Gets the remarks of this module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ModuleInfo.Group">
+            <summary>
+                Gets the group name (main prefix) of this module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ModuleInfo.Aliases">
+            <summary>
+                Gets a read-only list of aliases associated with this module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ModuleInfo.Commands">
+            <summary>
+                Gets a read-only list of commands associated with this module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ModuleInfo.Preconditions">
+            <summary>
+                Gets a read-only list of preconditions that apply to this module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ModuleInfo.Attributes">
+            <summary>
+                Gets a read-only list of attributes that apply to this module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ModuleInfo.Submodules">
+            <summary>
+                Gets a read-only list of submodules associated with this module.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ModuleInfo.Parent">
+            <summary>
+                Gets the parent module of this submodule if applicable.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ModuleInfo.IsSubmodule">
+            <summary>
+                Gets a value that indicates whether this module is a submodule or not.
+            </summary>
+        </member>
+        <member name="T:Kook.Commands.ParameterInfo">
+            <summary>
+                Provides the information of a parameter.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ParameterInfo.Command">
+            <summary>
+                Gets the command that associates with this parameter.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ParameterInfo.Name">
+            <summary>
+                Gets the name of this parameter.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ParameterInfo.Summary">
+            <summary>
+                Gets the summary of this parameter.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ParameterInfo.IsOptional">
+            <summary>
+                Gets a value that indicates whether this parameter is optional or not.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ParameterInfo.IsRemainder">
+            <summary>
+                Gets a value that indicates whether this parameter is a remainder parameter or not.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ParameterInfo.IsMultiple">
+            <summary>
+                Gets a value that indicates whether this parameter is a multiple parameter or not.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ParameterInfo.Type">
+            <summary>
+                Gets the type of the parameter.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ParameterInfo.DefaultValue">
+            <summary>
+                Gets the default value for this optional parameter if applicable.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ParameterInfo.Preconditions">
+            <summary>
+                Gets a read-only list of precondition that apply to this parameter.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ParameterInfo.Attributes">
+            <summary>
+                Gets a read-only list of attributes that apply to this parameter.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.ParameterInfo.CheckPreconditionsAsync(Kook.Commands.ICommandContext,System.Object,System.IServiceProvider)">
+            <summary>
+                Checks the preconditions of this parameter.
+            </summary>
+            <param name="context"> The context of the command. </param>
+            <param name="arg"> The argument that is being parsed. </param>
+            <param name="services"> The service provider that is used to resolve services. </param>
+            <returns> A <see cref="T:Kook.Commands.PreconditionResult"/> that indicates whether the precondition is successful or not. </returns>
+        </member>
+        <member name="M:Kook.Commands.ParameterInfo.ParseAsync(Kook.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <summary>
+                Parses the input string into the desired type.
+            </summary>
+            <param name="context"> The context of the command. </param>
+            <param name="input"> The input string. </param>
+            <param name="services"> The service provider that is used to resolve services. </param>
+            <returns> A <see cref="T:Kook.Commands.TypeReaderResult"/> that contains the parsing result. </returns>
+        </member>
+        <member name="M:Kook.Commands.ParameterInfo.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Commands.CommandMapNode.AddCommand(Kook.Commands.CommandService,System.String,System.Int32,Kook.Commands.CommandInfo)">
+            <exception cref="T:System.InvalidOperationException">Cannot add commands to the root node.</exception>
+        </member>
+        <member name="T:Kook.Commands.ModuleBase">
+            <summary>
+                Provides a base class for a command module to inherit from.
+            </summary>
+        </member>
+        <member name="T:Kook.Commands.ModuleBase`1">
+            <summary>
+                Provides a base class for a command module to inherit from.
+            </summary>
+            <typeparam name="T">A class that implements <see cref="T:Kook.Commands.ICommandContext"/>.</typeparam>
+        </member>
+        <member name="P:Kook.Commands.ModuleBase`1.Context">
+            <summary>
+                The underlying context of the command.
+            </summary>
+            <seealso cref="T:Kook.Commands.ICommandContext" />
+            <seealso cref="T:Kook.Commands.CommandContext" />
+        </member>
+        <member name="M:Kook.Commands.ModuleBase`1.ReplyFileAsync(System.String,System.String,Kook.AttachmentType,System.Boolean,System.Boolean,Kook.RequestOptions)">
+            <summary>
+                Sends a file to the source channel.
+            </summary>
+            <param name="path">
+                The file path of the file.
+            </param>
+            <param name="fileName">
+                The name of the file.
+            </param>
+            <param name="type">The type of the attachment.</param>
+            <param name="isQuote">
+                <c>true</c> if the source message will be quoted in this message; otherwise, <c>false</c>.
+            </param>
+            <param name="isEphemeral">
+                <c>true</c> if the message to be sent can be seen only by the command invoker; otherwise, <c>false</c>.
+            </param>
+            <param name="options">The request options for this <c>async</c> request.</param>
+        </member>
+        <member name="M:Kook.Commands.ModuleBase`1.ReplyFileAsync(System.IO.Stream,System.String,Kook.AttachmentType,System.Boolean,System.Boolean,Kook.RequestOptions)">
+            <summary>
+                Sends a file to the source channel.
+            </summary>
+            <param name="stream">
+                Stream of the file to be sent.
+            </param>
+            <param name="fileName">
+                The name of the file.
+            </param>
+            <param name="type">The type of the attachment.</param>
+            <param name="isQuote">
+                <c>true</c> if the source message will be quoted in this message; otherwise, <c>false</c>.
+            </param>
+            <param name="isEphemeral">
+                <c>true</c> if the message to be sent can be seen only by the command invoker; otherwise, <c>false</c>.
+            </param>
+            <param name="options">The request options for this <c>async</c> request.</param>
+        </member>
+        <member name="M:Kook.Commands.ModuleBase`1.ReplyFileAsync(Kook.FileAttachment,System.Boolean,System.Boolean,Kook.RequestOptions)">
+            <summary>
+                Sends a file to the source channel.
+            </summary>
+            <param name="attachment">The attachment containing the file.</param>
+            <param name="isQuote">
+                <c>true</c> if the source message will be quoted in this message; otherwise, <c>false</c>.
+            </param>
+            <param name="isEphemeral">
+                <c>true</c> if the message to be sent can be seen only by the command invoker; otherwise, <c>false</c>.
+            </param>
+            <param name="options">The request options for this <c>async</c> request.</param>
+        </member>
+        <member name="M:Kook.Commands.ModuleBase`1.ReplyTextAsync(System.String,System.Boolean,System.Boolean,Kook.RequestOptions)">
+            <summary>
+                Sends a text message to the source channel.
+            </summary>
+            <param name="message">
+                Contents of the message.
+            </param>
+            <param name="isQuote">
+                <c>true</c> if the source message will be quoted in this message; otherwise, <c>false</c>.
+            </param>
+            <param name="isEphemeral">
+                <c>true</c> if the message to be sent can be seen only by the command invoker; otherwise, <c>false</c>.
+            </param>
+            <param name="options">The request options for this <c>async</c> request.</param>
+        </member>
+        <member name="M:Kook.Commands.ModuleBase`1.ReplyCardsAsync(System.Collections.Generic.IEnumerable{Kook.ICard},System.Boolean,System.Boolean,Kook.RequestOptions)">
+            <summary>
+                Sends a card message to the source channel.
+            </summary>
+            <param name="cards">
+                The cards to be sent.
+            </param>
+            <param name="isQuote">
+                <c>true</c> if the source message will be quoted in this message; otherwise, <c>false</c>.
+            </param>
+            <param name="isEphemeral">
+                <c>true</c> if the message to be sent can be seen only by the command invoker; otherwise, <c>false</c>.
+            </param>
+            <param name="options">The request options for this <c>async</c> request.</param>
+        </member>
+        <member name="M:Kook.Commands.ModuleBase`1.ReplyCardAsync(Kook.ICard,System.Boolean,System.Boolean,Kook.RequestOptions)">
+            <summary>
+                Sends a card message to the source channel.
+            </summary>
+            <param name="card">
+                The card to be sent.
+            </param>
+            <param name="isQuote">
+                <c>true</c> if the source message will be quoted in this message; otherwise, <c>false</c>.
+            </param>
+            <param name="isEphemeral">
+                <c>true</c> if the message to be sent can be seen only by the command invoker; otherwise, <c>false</c>.
+            </param>
+            <param name="options">The request options for this <c>async</c> request.</param>
+        </member>
+        <member name="M:Kook.Commands.ModuleBase`1.BeforeExecuteAsync(Kook.Commands.CommandInfo)">
+            <summary>
+                The method to execute asynchronously before executing the command.
+            </summary>
+            <param name="command">The <see cref="T:Kook.Commands.CommandInfo"/> of the command to be executed.</param>
+        </member>
+        <member name="M:Kook.Commands.ModuleBase`1.BeforeExecute(Kook.Commands.CommandInfo)">
+            <summary>
+                The method to execute before executing the command.
+            </summary>
+            <param name="command">The <see cref="T:Kook.Commands.CommandInfo"/> of the command to be executed.</param>
+        </member>
+        <member name="M:Kook.Commands.ModuleBase`1.AfterExecuteAsync(Kook.Commands.CommandInfo)">
+            <summary>
+                The method to execute asynchronously after executing the command.
+            </summary>
+            <param name="command">The <see cref="T:Kook.Commands.CommandInfo"/> of the command to be executed.</param>
+        </member>
+        <member name="M:Kook.Commands.ModuleBase`1.AfterExecute(Kook.Commands.CommandInfo)">
+            <summary>
+                The method to execute after executing the command.
+            </summary>
+            <param name="command">The <see cref="T:Kook.Commands.CommandInfo"/> of the command to be executed.</param>
+        </member>
+        <member name="M:Kook.Commands.ModuleBase`1.OnModuleBuilding(Kook.Commands.CommandService,Kook.Commands.Builders.ModuleBuilder)">
+            <summary>
+                The method to execute when building the module.
+            </summary>
+            <param name="commandService">The <see cref="T:Kook.Commands.CommandService"/> used to create the module.</param>
+            <param name="builder">The builder used to build the module.</param>
+        </member>
+        <member name="T:Kook.Commands.MultiMatchHandling">
+            <summary>
+            Specifies the behavior when multiple matches are found during the command parsing stage.
+            </summary>
+        </member>
+        <member name="F:Kook.Commands.MultiMatchHandling.Exception">
+            <summary> Indicates that when multiple results are found, an exception should be thrown. </summary>
+        </member>
+        <member name="F:Kook.Commands.MultiMatchHandling.Best">
+            <summary> Indicates that when multiple results are found, the best result should be chosen. </summary>
+        </member>
+        <member name="T:Kook.Commands.ChannelTypeReader`1">
+            <summary>
+                A <see cref="T:Kook.Commands.TypeReader"/> for parsing objects implementing <see cref="T:Kook.IChannel"/>.
+            </summary>
+            <remarks>
+                This <see cref="T:Kook.Commands.TypeReader"/> is shipped with Kook.Net and is used by default to parse any
+                <see cref="T:Kook.IChannel"/> implemented object within a command. The TypeReader will attempt to first parse the
+                input by mention, then the identifier, then by name; the highest candidate will be chosen as the
+                final output; otherwise, an erroneous <see cref="T:Kook.Commands.TypeReaderResult"/> is returned.
+            </remarks>
+            <typeparam name="T">The type to be checked; must implement <see cref="T:Kook.IChannel"/>.</typeparam>
+        </member>
+        <member name="M:Kook.Commands.ChannelTypeReader`1.ReadAsync(Kook.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Commands.EnumTypeReader`1.ReadAsync(Kook.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.MessageTypeReader`1">
+            <summary>
+                A <see cref="T:Kook.Commands.TypeReader"/> for parsing objects implementing <see cref="T:Kook.IMessage"/>.
+            </summary>
+            <typeparam name="T">The type to be checked; must implement <see cref="T:Kook.IMessage"/>.</typeparam>
+        </member>
+        <member name="M:Kook.Commands.MessageTypeReader`1.ReadAsync(Kook.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Commands.NullableTypeReader`1.ReadAsync(Kook.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Commands.PrimitiveTypeReader`1.#ctor">
+            <exception cref="T:System.ArgumentOutOfRangeException"><typeparamref name="T"/> must be within the range [0, 1].</exception>
+        </member>
+        <member name="M:Kook.Commands.PrimitiveTypeReader`1.#ctor(Kook.Commands.TryParseDelegate{`0},System.Single)">
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="score"/> must be within the range [0, 1].</exception>
+        </member>
+        <member name="T:Kook.Commands.RoleTypeReader`1">
+            <summary>
+                A <see cref="T:Kook.Commands.TypeReader"/> for parsing objects implementing <see cref="T:Kook.IRole"/>.
+            </summary>
+            <typeparam name="T">The type to be checked; must implement <see cref="T:Kook.IRole"/>.</typeparam>
+        </member>
+        <member name="M:Kook.Commands.RoleTypeReader`1.ReadAsync(Kook.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="F:Kook.Commands.TimeSpanTypeReader.Formats">
+            <summary>
+            TimeSpan try parse formats.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.TimeSpanTypeReader.ReadAsync(Kook.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.TypeReader">
+            <summary>
+                Defines a reader class that parses user input into a specified type.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.TypeReader.ReadAsync(Kook.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <summary>
+                Attempts to parse the <paramref name="input"/> into the desired type.
+            </summary>
+            <param name="context">The context of the command.</param>
+            <param name="input">The raw input of the command.</param>
+            <param name="services">The service collection used for dependency injection.</param>
+            <returns>
+                A task that represents the asynchronous parsing operation. The task result contains the parsing result.
+            </returns>
+        </member>
+        <member name="T:Kook.Commands.UserTypeReader`1">
+            <summary>
+                A <see cref="T:Kook.Commands.TypeReader"/> for parsing objects implementing <see cref="T:Kook.IUser"/>.
+            </summary>
+            <typeparam name="T">The type to be checked; must implement <see cref="T:Kook.IUser"/>.</typeparam>
+        </member>
+        <member name="M:Kook.Commands.UserTypeReader`1.ReadAsync(Kook.Commands.ICommandContext,System.String,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.ExecuteResult">
+            <summary>
+                Contains information of the command's overall execution result.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ExecuteResult.Exception">
+            <summary>
+                Gets the exception that may have occurred during the command execution.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ExecuteResult.Error">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Commands.ExecuteResult.ErrorReason">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Commands.ExecuteResult.IsSuccess">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Commands.ExecuteResult.FromSuccess">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.ExecuteResult" /> with no error, indicating a successful execution.
+            </summary>
+            <returns>
+                A <see cref="T:Kook.Commands.ExecuteResult" /> that does not contain any errors.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.ExecuteResult.FromError(Kook.Commands.CommandError,System.String)">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.ExecuteResult" /> with a specified <see cref="T:Kook.Commands.CommandError" /> and its
+                reason, indicating an unsuccessful execution.
+            </summary>
+            <param name="error">The type of error.</param>
+            <param name="reason">The reason behind the error.</param>
+            <returns>
+                A <see cref="T:Kook.Commands.ExecuteResult" /> that contains a <see cref="T:Kook.Commands.CommandError" /> and reason.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.ExecuteResult.FromError(System.Exception)">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.ExecuteResult" /> with a specified exception, indicating an unsuccessful
+                execution.
+            </summary>
+            <param name="ex">The exception that caused the command execution to fail.</param>
+            <returns>
+                A <see cref="T:Kook.Commands.ExecuteResult" /> that contains the exception that caused the unsuccessful execution, along
+                with a <see cref="T:Kook.Commands.CommandError" /> of type <c>Exception</c> as well as the exception message as the
+                reason.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.ExecuteResult.FromError(Kook.Commands.IResult)">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.ExecuteResult" /> with a specified result; this may or may not be an
+                successful execution depending on the <see cref="P:Kook.Commands.IResult.Error" /> and
+                <see cref="P:Kook.Commands.IResult.ErrorReason" /> specified.
+            </summary>
+            <param name="result">The result to inherit from.</param>
+            <returns>
+                A <see cref="T:Kook.Commands.ExecuteResult"/> that inherits the <see cref="T:Kook.Commands.IResult"/> error type and reason.
+            </returns>
+        </member>
+        <member name="M:Kook.Commands.ExecuteResult.ToString">
+            <summary>
+                Gets a string that indicates the execution result.
+            </summary>
+            <returns>
+                <c>Success</c> if <see cref="P:Kook.Commands.ExecuteResult.IsSuccess"/> is <c>true</c>; otherwise "<see cref="P:Kook.Commands.ExecuteResult.Error"/>:
+                <see cref="P:Kook.Commands.ExecuteResult.ErrorReason"/>".
+            </returns>
+        </member>
+        <member name="T:Kook.Commands.IResult">
+            <summary>
+                Contains information of the result related to a command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.IResult.Error">
+            <summary>
+                Describes the error type that may have occurred during the operation.
+            </summary>
+            <returns>
+                A <see cref="T:Kook.Commands.CommandError" /> indicating the type of error that may have occurred during the operation; 
+                <c>null</c> if the operation was successful.
+            </returns>
+        </member>
+        <member name="P:Kook.Commands.IResult.ErrorReason">
+            <summary>
+                Describes the reason for the error.
+            </summary>
+            <returns>
+                A string containing the error reason.
+            </returns>
+        </member>
+        <member name="P:Kook.Commands.IResult.IsSuccess">
+            <summary>
+                Indicates whether the operation was successful or not.
+            </summary>
+            <returns>
+                <c>true</c> if the result is positive; otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Kook.Commands.MatchResult">
+            <summary>
+                Represents the match result of a command.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.MatchResult.Match">
+            <summary>
+                Gets the command that may have matched during the command execution.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.MatchResult.Pipeline">
+            <summary>
+                Gets on which pipeline stage the command may have matched or failed.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.MatchResult.Error">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Commands.MatchResult.ErrorReason">
+            <inheritdoc />
+        </member>
+        <member name="P:Kook.Commands.MatchResult.IsSuccess">
+            <inheritdoc />
+        </member>
+        <member name="M:Kook.Commands.MatchResult.FromSuccess(Kook.Commands.CommandMatch,Kook.Commands.IResult)">
+            <summary>
+                Creates a successful match result.
+            </summary>
+            <param name="match"> The command that matched. </param>
+            <param name="pipeline"> The pipeline stage on which the command matched. </param>
+            <returns> The match result. </returns>
+        </member>
+        <member name="M:Kook.Commands.MatchResult.FromError(Kook.Commands.CommandError,System.String)">
+            <summary>
+                Creates a failed match result.
+            </summary>
+            <param name="error"> The error that occurred. </param>
+            <param name="reason"> The reason for the error. </param>
+            <returns> The match result. </returns>
+        </member>
+        <member name="M:Kook.Commands.MatchResult.FromError(System.Exception)">
+            <summary>
+                Creates a failed match result.
+            </summary>
+            <param name="ex"> The exception that occurred. </param>
+            <returns> The match result. </returns>
+        </member>
+        <member name="M:Kook.Commands.MatchResult.FromError(Kook.Commands.IResult)">
+            <summary>
+                Creates a failed match result.
+            </summary>
+            <param name="result"> The result that failed. </param>
+            <returns> The match result. </returns>
+        </member>
+        <member name="M:Kook.Commands.MatchResult.FromError(Kook.Commands.IResult,Kook.Commands.CommandError,System.String)">
+            <summary>
+                Creates a failed match result.
+            </summary>
+            <param name="pipeline"> The pipeline stage on which the command failed. </param>
+            <param name="error"> The error that occurred. </param>
+            <param name="reason"> The reason for the error. </param>
+            <returns> The match result. </returns>
+        </member>
+        <member name="M:Kook.Commands.MatchResult.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.ParseResult">
+            <summary>
+                Contains information for the parsing result from the command service's parser.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ParseResult.ArgValues">
+            <summary>
+                Gets a read-only collection containing the parsed argument values.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ParseResult.ParamValues">
+            <summary>
+                Gets a read-only collection containing the parsed parameter values.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.ParseResult.Error">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.ParseResult.ErrorReason">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.ParseResult.ErrorParameter">
+            <summary>
+                Provides information about the parameter that caused the parsing error.
+            </summary>
+            <returns>
+                A <see cref="T:Kook.Commands.ParameterInfo" /> indicating the parameter info of the error that may have occurred during parsing;
+                <c>null</c> if the parsing was successful or the parsing error is not specific to a single parameter.
+            </returns>
+        </member>
+        <member name="P:Kook.Commands.ParseResult.IsSuccess">
+            <inheritdoc/>
+        </member>
+        <member name="M:Kook.Commands.ParseResult.FromSuccess(System.Collections.Generic.IReadOnlyList{Kook.Commands.TypeReaderResult},System.Collections.Generic.IReadOnlyList{Kook.Commands.TypeReaderResult})">
+            <summary>
+                Creates a successful parsing result.
+            </summary>
+            <param name="argValues"> The parsed argument values. </param>
+            <param name="paramValues"> The parsed parameter values. </param>
+            <returns> The parsing result. </returns>
+        </member>
+        <member name="M:Kook.Commands.ParseResult.FromSuccess(System.Collections.Generic.IReadOnlyList{Kook.Commands.TypeReaderValue},System.Collections.Generic.IReadOnlyList{Kook.Commands.TypeReaderValue})">
+            <summary>
+                Creates a successful parsing result.
+            </summary>
+            <param name="argValues"> The parsed argument values. </param>
+            <param name="paramValues"> The parsed parameter values. </param>
+            <returns> The parsing result. </returns>
+        </member>
+        <member name="M:Kook.Commands.ParseResult.FromError(Kook.Commands.CommandError,System.String)">
+            <summary>
+                Creates a failed parsing result.
+            </summary>
+            <param name="error"> The error that occurred. </param>
+            <param name="reason"> The reason for the error. </param>
+            <returns> The parsing result. </returns>
+        </member>
+        <member name="M:Kook.Commands.ParseResult.FromError(Kook.Commands.CommandError,System.String,Kook.Commands.ParameterInfo)">
+            <summary>
+                Creates a failed parsing result.
+            </summary>
+            <param name="error"> The error that occurred. </param>
+            <param name="reason"> The reason for the error. </param>
+            <param name="parameterInfo"> The parameter info of the error that may have occurred during parsing. </param>
+            <returns> The parsing result. </returns>
+        </member>
+        <member name="M:Kook.Commands.ParseResult.FromError(System.Exception)">
+            <summary>
+                Creates a failed parsing result.
+            </summary>
+            <param name="ex"> The exception that occurred. </param>
+            <returns> The parsing result. </returns>
+        </member>
+        <member name="M:Kook.Commands.ParseResult.FromError(Kook.Commands.IResult)">
+            <summary>
+                Creates a failed parsing result.
+            </summary>
+            <param name="result"> The result that contains the error. </param>
+            <returns> The parsing result. </returns>
+        </member>
+        <member name="M:Kook.Commands.ParseResult.FromError(Kook.Commands.IResult,Kook.Commands.ParameterInfo)">
+            <summary>
+                Creates a failed parsing result.
+            </summary>
+            <param name="result"> The result that contains the error. </param>
+            <param name="parameterInfo"> The parameter info of the error that may have occurred during parsing. </param>
+            <returns> The parsing result. </returns>
+        </member>
+        <member name="M:Kook.Commands.ParseResult.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.PreconditionGroupResult">
+            <summary>
+                Represents the result of a grouped precondition check.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.PreconditionGroupResult.PreconditionResults">
+            <summary>
+                Gets the results of the precondition checks.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.PreconditionGroupResult.#ctor(System.Nullable{Kook.Commands.CommandError},System.String,System.Collections.Generic.ICollection{Kook.Commands.PreconditionResult})">
+            <summary>
+                Creates a new <see cref="T:Kook.Commands.PreconditionGroupResult"/> with the specified error, reason, and precondition results.
+            </summary>
+            <param name="error"> The error that occurred. </param>
+            <param name="errorReason"> The reason for the error. </param>
+            <param name="preconditions"> The results of the precondition checks. </param>
+        </member>
+        <member name="M:Kook.Commands.PreconditionGroupResult.FromSuccess">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.PreconditionResult" /> with no errors.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.PreconditionGroupResult.FromError(System.String,System.Collections.Generic.ICollection{Kook.Commands.PreconditionResult})">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.PreconditionResult" /> with the reason and precondition results.
+            </summary>
+            <param name="reason"> The reason for the error. </param>
+            <param name="preconditions"> The results of the precondition checks. </param>
+        </member>
+        <member name="M:Kook.Commands.PreconditionGroupResult.FromError(System.Exception)">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.PreconditionResult" /> with an exception.
+            </summary>
+            <param name="ex"> The exception that occurred. </param>
+        </member>
+        <member name="M:Kook.Commands.PreconditionGroupResult.FromError(Kook.Commands.IResult)">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.PreconditionResult" /> with the specified result.
+            </summary>
+            <param name="result"> The result of failure. </param>
+        </member>
+        <member name="M:Kook.Commands.PreconditionGroupResult.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.PreconditionResult">
+            <summary>
+                Represents a result type for command preconditions.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.PreconditionResult.Error">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.PreconditionResult.ErrorReason">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.PreconditionResult.IsSuccess">
+            <inheritdoc/>
+        </member>
+        <member name="M:Kook.Commands.PreconditionResult.#ctor(System.Nullable{Kook.Commands.CommandError},System.String)">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.PreconditionResult" /> class with the command <paramref name="error"/> type
+                and reason.
+            </summary>
+            <param name="error">The type of failure.</param>
+            <param name="errorReason">The reason of failure.</param>
+        </member>
+        <member name="M:Kook.Commands.PreconditionResult.FromSuccess">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.PreconditionResult" /> with no errors.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.PreconditionResult.FromError(System.String)">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.PreconditionResult" /> with <see cref="F:Kook.Commands.CommandError.UnmetPrecondition" /> and the
+                specified reason.
+            </summary>
+            <param name="reason">The reason of failure.</param>
+        </member>
+        <member name="M:Kook.Commands.PreconditionResult.FromError(System.Exception)">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.PreconditionResult" /> with an exception.
+            </summary>
+            <param name="ex"> The exception that occurred. </param>
+        </member>
+        <member name="M:Kook.Commands.PreconditionResult.FromError(Kook.Commands.IResult)">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.PreconditionResult" /> with the specified <paramref name="result"/> type.
+            </summary>
+            <param name="result">The result of failure.</param>
+        </member>
+        <member name="M:Kook.Commands.PreconditionResult.ToString">
+            <summary>
+            Returns a string indicating whether the <see cref="T:Kook.Commands.PreconditionResult"/> is successful.
+            </summary>
+        </member>
+        <member name="T:Kook.Commands.RuntimeResult">
+            <summary>
+                Represents the runtime result of a command execution.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.RuntimeResult.#ctor(System.Nullable{Kook.Commands.CommandError},System.String)">
+            <summary>
+                Initializes a new <see cref="T:Kook.Commands.RuntimeResult" /> class with the type of error and reason.
+            </summary>
+            <param name="error">The type of failure, or <c>null</c> if none.</param>
+            <param name="reason">The reason of failure.</param>
+        </member>
+        <member name="P:Kook.Commands.RuntimeResult.Error">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.RuntimeResult.Reason">
+            <summary> Describes the execution reason or result. </summary>
+        </member>
+        <member name="P:Kook.Commands.RuntimeResult.IsSuccess">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.RuntimeResult.Kook#Commands#IResult#ErrorReason">
+            <inheritdoc/>
+        </member>
+        <member name="M:Kook.Commands.RuntimeResult.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.SearchResult">
+            <summary>
+                Represents the result of a command search.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.SearchResult.Text">
+            <summary>
+                Gets the text that was searched in.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.SearchResult.Commands">
+            <summary>
+                Gets the commands that were found.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.SearchResult.Error">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.SearchResult.ErrorReason">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.SearchResult.IsSuccess">
+            <inheritdoc/>
+        </member>
+        <member name="M:Kook.Commands.SearchResult.FromSuccess(System.String,System.Collections.Generic.IReadOnlyList{Kook.Commands.CommandMatch})">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.SearchResult" /> with no errors.
+            </summary>
+            <param name="text"> The text that was searched in. </param>
+            <param name="commands"> The commands that were found. </param>
+        </member>
+        <member name="M:Kook.Commands.SearchResult.FromError(Kook.Commands.CommandError,System.String)">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.SearchResult" /> with a <see cref="T:Kook.Commands.CommandError"/>.
+            </summary>
+            <param name="error"> The type of failure. </param>
+            <param name="reason"> The reason of failure. </param>
+            <returns></returns>
+        </member>
+        <member name="M:Kook.Commands.SearchResult.FromError(System.Exception)">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.SearchResult" /> with an exception.
+            </summary>
+            <param name="ex"> The exception that occurred. </param>
+        </member>
+        <member name="M:Kook.Commands.SearchResult.FromError(Kook.Commands.IResult)">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.SearchResult" /> with the specified <paramref name="result"/> type.
+            </summary>
+            <param name="result"> The result of failure. </param>
+        </member>
+        <member name="M:Kook.Commands.SearchResult.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.TypeReaderValue">
+            <summary>
+                Represents a parsing result of a type reader.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.TypeReaderValue.Value">
+            <summary>
+                Gets the parsed value.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.TypeReaderValue.Score">
+            <summary>
+                Gets the confidence score of the parsing.
+            </summary>
+        </member>
+        <member name="M:Kook.Commands.TypeReaderValue.#ctor(System.Object,System.Single)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Kook.Commands.TypeReaderValue"/> struct.
+            </summary>
+            <param name="value"> The parsed value. </param>
+            <param name="score"> The confidence score of the parsing. </param>
+        </member>
+        <member name="M:Kook.Commands.TypeReaderValue.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.TypeReaderResult">
+            <summary>
+                Represents a parsing result of a type reader.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.TypeReaderResult.Values">
+            <summary>
+                Gets the parsed values.
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.TypeReaderResult.Error">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.TypeReaderResult.ErrorReason">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.TypeReaderResult.IsSuccess">
+            <inheritdoc/>
+        </member>
+        <member name="P:Kook.Commands.TypeReaderResult.BestMatch">
+            <exception cref="T:System.InvalidOperationException">TypeReaderResult was not successful.</exception>
+        </member>
+        <member name="M:Kook.Commands.TypeReaderResult.FromSuccess(System.Object)">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.TypeReaderResult" /> with no errors.
+            </summary>
+            <param name="value"> The parsed value. </param>
+        </member>
+        <member name="M:Kook.Commands.TypeReaderResult.FromSuccess(Kook.Commands.TypeReaderValue)">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.TypeReaderResult" /> with no errors.
+            </summary>
+            <param name="value"> The parsed value. </param>
+        </member>
+        <member name="M:Kook.Commands.TypeReaderResult.FromSuccess(System.Collections.Generic.IReadOnlyCollection{Kook.Commands.TypeReaderValue})">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.TypeReaderResult" /> with no errors.
+            </summary>
+            <param name="values"> The parsed values. </param>
+        </member>
+        <member name="M:Kook.Commands.TypeReaderResult.FromError(Kook.Commands.CommandError,System.String)">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.TypeReaderResult" /> with a specified error.
+            </summary>
+            <param name="error"> The error. </param>
+            <param name="reason"> The reason for the error. </param>
+        </member>
+        <member name="M:Kook.Commands.TypeReaderResult.FromError(System.Exception)">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.TypeReaderResult" /> with an exception.
+            </summary>
+            <param name="ex"> The exception that occurred. </param>
+        </member>
+        <member name="M:Kook.Commands.TypeReaderResult.FromError(Kook.Commands.IResult)">
+            <summary>
+                Returns a <see cref="T:Kook.Commands.TypeReaderResult" /> with an specified result.
+            </summary>
+            <param name="result"> The result. </param>
+        </member>
+        <member name="M:Kook.Commands.TypeReaderResult.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Kook.Commands.RunMode">
+            <summary>
+                Specifies the behavior of the command execution workflow.
+            </summary>
+            <seealso cref="T:Kook.Commands.CommandServiceConfig"/>
+            <seealso cref="T:Kook.Commands.CommandAttribute"/>
+        </member>
+        <member name="F:Kook.Commands.RunMode.Default">
+            <summary>
+            The default behavior set in <see cref="T:Kook.Commands.CommandServiceConfig"/>.
+            </summary>
+        </member>
+        <member name="F:Kook.Commands.RunMode.Sync">
+            <summary>
+            Executes the command on the same thread as gateway one.
+            </summary>
+        </member>
+        <member name="F:Kook.Commands.RunMode.Async">
+            <summary>
+            Executes the command on a different thread from the gateway one.
+            </summary>
+        </member>
+        <member name="T:Kook.Commands.QuotationAliasUtils">
+            <summary>
+            Utility class which contains the default matching pairs of quotation marks for CommandServiceConfig
+            </summary>
+        </member>
+        <member name="P:Kook.Commands.QuotationAliasUtils.GetDefaultAliasMap">
+            <summary>
+            A default map of open-close pairs of quotation marks.
+            Contains many regional and Unicode equivalents.
+            Used in the <see cref="T:Kook.Commands.CommandServiceConfig"/>.
+            </summary>
+            <seealso cref="P:Kook.Commands.CommandServiceConfig.QuotationMarkAliasMap"/>
+        </member>
+    </members>
+</doc>
